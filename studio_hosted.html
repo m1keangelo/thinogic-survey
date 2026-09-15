@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thinogic Survey Studio</title>
+<style>
+:root{
+  --bg:#f5f5f7; --surface:#ffffff; --text:#1d1d1f; --text2:#6e6e73; --text3:#86868b;
+  --border:#d2d2d7; --border2:#e8e8ed; --fill:#f5f5f7; --fill2:#fafafa;
+  --accent:#0071e3; --accent-d:#0060c9; --accent-t:#e8f1fc;
+  --teal:#1d5c6e; --teal-d:#0f3a47;
+  --green:#34c759; --orange:#ff9500; --red:#ff3b30;
+  --r-lg:16px; --r-md:10px; --r-sm:8px; --pill:980px;
+  --sh-sm:0 1px 2px rgba(0,0,0,.05);
+  --sh-md:0 1px 2px rgba(0,0,0,.04),0 8px 28px rgba(0,0,0,.07);
+  --font:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-size:14px;line-height:1.5}
+::selection{background:rgba(0,113,227,.2)}
+button,input,select,textarea{font-family:inherit}
+
+.app{display:flex;min-height:100vh}
+#studio-ui{display:flex;flex:1;min-width:0}
+
+aside{width:252px;background:var(--surface);border-right:1px solid var(--border2);position:sticky;top:0;height:100vh;display:flex;flex-direction:column;flex-shrink:0;z-index:20}
+.brand{display:flex;align-items:center;gap:11px;padding:22px 18px 18px}
+.brand .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--teal-d),var(--teal));display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--sh-sm)}
+.brand .bt{line-height:1.15}
+.brand .bt b{font-size:14.5px;font-weight:700;letter-spacing:-.01em;display:block}
+.brand .bt span{font-size:11px;color:var(--text3)}
+nav#mainnav{padding:6px 10px;flex:1;overflow-y:auto}
+#mainnav button{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:none;border:none;padding:9px 11px;border-radius:var(--r-md);font-size:13.5px;font-weight:500;color:var(--text);cursor:pointer;transition:background .15s,color .15s;margin-bottom:2px}
+#mainnav button .n{width:22px;height:22px;border-radius:6px;background:var(--fill);color:var(--text2);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:.15s}
+#mainnav button:hover{background:var(--fill)}
+#mainnav button.on{background:var(--accent-t);color:var(--accent);font-weight:600}
+#mainnav button.on .n{background:var(--accent);color:#fff}
+.side-foot{padding:14px 16px;border-top:1px solid var(--border2);font-size:11px;color:var(--text3)}
+.side-foot button{margin-top:8px;width:100%;background:none;border:1px solid var(--border2);border-radius:var(--pill);padding:6px 0;font-size:12px;color:var(--text2);cursor:pointer;transition:.15s}
+.side-foot button:hover{background:var(--fill);color:var(--text)}
+
+main{flex:1;padding:38px 46px 80px;min-width:0;max-width:1160px;overflow-y:auto}
+.ptitle{margin-bottom:22px}
+.ptitle h2{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.ptitle p{font-size:14px;color:var(--text2);margin-top:3px}
+
+.card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-lg);padding:24px 26px;margin-bottom:18px;box-shadow:var(--sh-sm)}
+.card>h2,.card h2{font-size:16px;font-weight:700;letter-spacing:-.01em;color:var(--text);padding-bottom:0;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.card h2 .step{margin-left:auto;font-size:11px;font-weight:600;color:var(--text3);background:var(--fill);border-radius:var(--pill);padding:3px 10px}
+.card h3{font-size:13.5px;font-weight:600;color:var(--text);margin:16px 0 6px}
+p.small, .small{font-size:12.5px;color:var(--text2)}
+
+label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin:12px 0 5px;letter-spacing:.01em}
+input,select,textarea{width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:var(--r-md);font-size:14px;background:#fff;color:var(--text);outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236e6e73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:32px}
+input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3.5px rgba(0,113,227,.18)}
+textarea{min-height:64px;resize:vertical;line-height:1.45}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--accent);color:#fff;border:none;border-radius:var(--pill);padding:10px 21px;font-size:14px;font-weight:500;cursor:pointer;transition:background .16s,transform .1s;letter-spacing:.01em;text-decoration:none}
+.btn:hover{background:var(--accent-d)}
+.btn:active{transform:scale(.98)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.btn.sec{background:var(--fill);color:var(--text)}
+.btn.sec:hover{background:#eaeaee}
+
+.banner{padding:12px 14px;border-radius:var(--r-md);margin-bottom:12px;font-size:13px;display:flex;align-items:center;gap:10px}
+.banner.err{background:#fbe4e1;border:1px solid #ddb8b3;color:#b23a2f}
+.banner.warn{background:#fdf3dc;border:1px solid #f5d78e;color:#a67c00}
+.banner.ok{background:#d1f4e8;border:1px solid #a3ead6;color:#0a6e48}
+
+.login-overlay{display:flex;align-items:center;justify-content:center;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);z-index:1000}
+.login-card{background:#fff;border-radius:var(--r-lg);padding:40px 36px;max-width:360px;box-shadow:var(--sh-md)}
+
+.file-input{position:relative;display:inline-block}
+.file-input input{display:none}
+.file-input .btn{margin:0}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* Modal dialog */
+.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center}
+.modal.show{display:flex}
+.modal-content{background:#fff;border-radius:var(--r-lg);padding:32px;max-width:500px;max-height:80vh;overflow-y:auto;box-shadow:var(--sh-md)}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:12px}
+</style>
+<script>
+"use strict";
+
+// Version constants
+const STUDIO_VERSION = "4.2.0";
+const CLIENT_VERSION = "4.2.0";
+
+// Global state
+let S = {
+  photos: [],
+  an: {},
+  clusters: [],
+  locked: false,
+  meta: {name: "Untitled"},
+  ver: CLIENT_VERSION
+};
+let SHOW = 1;  // Current step (1-6)
+let currentUser = null;
+let heicSupport = false;
+let pass1paused = false;
+let pass1queue = [];  // [{id, retries, nextRetry}]
+let balance = null;
+
+// ===== Auth & Session =====
+async function checkAuth(){
+  const t = getCookie("tl_sess");
+  if(!t || !localStorage.getItem("authToken")){
+    showLoginOverlay();
+  } else {
+    localStorage.setItem("authToken", t);
+    currentUser = localStorage.getItem("currentUser") || "unknown";
+    loadState();
+  }
+}
+
+async function login(){
+  const u = document.getElementById("loginU").value.trim();
+  const p = document.getElementById("loginP").value.trim();
+  if(!u || !p){alert("Fill username and password");return}
+  try{
+    const r = await fetch("/api/login", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      credentials:"same-origin",
+      body:JSON.stringify({u,p})
+    }).then(x => x.json());
+    if(r.error) throw new Error(r.error);
+    localStorage.setItem("authToken", "ok");
+    localStorage.setItem("currentUser", u);
+    currentUser = u;
+    document.getElementById("loginOverlay").style.display = "none";
+    loadState();
+  }catch(e){
+    alert("Login failed: " + e.message);
+  }
+}
+
+async function logout(){
+  if(!confirm("Logout?")) return;
+  try{
+    await fetch("/api/logout", {method:"POST", credentials:"same-origin"});
+  }catch(e){}
+  localStorage.clear();
+  location.reload();
+}
+
+function showLoginOverlay(){
+  document.getElementById("loginOverlay").style.display = "flex";
+}
+
+function getCookie(name){
+  const v = document.cookie.split("; ").find(r => r.startsWith(name + "="));
+  return v ? v.split("=")[1] : null;
+}
+
+// ===== Rate Limit Retry Logic =====
+async function callWithRetry(fn, maxAttempts = 5, baseDelay = 500){
+  for(let i = 0; i < maxAttempts; i++){
+    try{
+      const r = await fn();
+      if(r.status === 429 || r.status >= 500){
+        if(i === maxAttempts - 1) throw new Error("Max retries exceeded (rate limited)");
+        const delay = baseDelay * Math.pow(2, i) + Math.random() * 1000;
+        await new Promise(resolve => setTimeout(resolve, delay));
+        continue;
+      }
+      return r;
+    }catch(e){
+      if(i === maxAttempts - 1) throw e;
+      const delay = baseDelay * Math.pow(2, i) + Math.random() * 1000;
+      await new Promise(resolve => setTimeout(resolve, delay));
+    }
+  }
+}
+
+// ===== Balance & Cost Guardrails =====
+async function checkBalance(){
+  try{
+    const r = await callWithRetry(() => 
+      fetch("/proxy/api.moonshot.cn/v1/users/me/balance", {
+        method:"GET",
+        headers:{"Authorization":"Bearer [PROXIED]"},
+        credentials:"same-origin"
+      }).then(x => ({status: x.status, json: () => x.json()}))
+    );
+    const data = await r.json();
+    if(data.data && data.data.available_balance){
+      balance = data.data.available_balance;
+      updateBalanceBanner();
+    }
+  }catch(e){
+    console.warn("Balance check failed:", e);
+  }
+}
+
+function updateBalanceBanner(){
+  const el = document.getElementById("balanceBanner");
+  if(!el) return;
+  if(balance === null){
+    el.innerHTML = "";
+  } else if(balance < 10){
+    el.innerHTML = `<div class="banner err">💳 Kimi balance low: $${balance.toFixed(2)}. Add credits to continue API calls.</div>`;
+  } else {
+    el.innerHTML = `<div class="banner ok">💳 Balance: $${balance.toFixed(2)}</div>`;
+  }
+}
+
+function costPreflightEstimate(photoCount){
+  // Rough: P1 = $0.01/photo, P2 = $0.02/photo, P3 = $0.01/photo
+  const est = photoCount * (0.01 + 0.02 + 0.01);
+  return est;
+}
+
+async function checkCostGuardrails(photoCount){
+  if(balance === null) return true;  // Can't check, assume ok
+  const est = costPreflightEstimate(photoCount);
+  if(est > balance){
+    if(!confirm(`Estimated cost $${est.toFixed(2)} exceeds balance $${balance.toFixed(2)}. Continue anyway?`)){
+      return false;
+    }
+  }
+  return true;
+}
+
+// ===== Version Check =====
+async function checkVersionMismatch(){
+  try{
+    const r = await fetch("/api/version").then(x => x.json());
+    const studioVer = r.studio;
+    if(studioVer && studioVer !== STUDIO_VERSION){
+      const el = document.getElementById("versionBanner");
+      if(el){
+        el.innerHTML = `<div class="banner warn">⚠️ Version mismatch: Studio v${studioVer} vs Client v${CLIENT_VERSION}. Reload to sync.</div>`;
+      }
+    }
+  }catch(e){}
+}
+
+// ===== HEIC Support Detection =====
+function detectHEICSupport(){
+  return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
+}
+
+// ===== File Drop & ZIP Parsing =====
+async function parseZip(file){
+  // Central-directory parser for ZIP (handles data-descriptor zips)
+  const buf = await file.arrayBuffer();
+  const view = new Uint8Array(buf);
+  let results = [];
+  
+  // Find central directory (0x504b0102 = PK\3\4)
+  const PK = 0x504b;
+  for(let i = 0; i < view.length - 22; i++){
+    if(view[i] === 0x50 && view[i+1] === 0x4b && view[i+2] === 0x03 && view[i+3] === 0x04){
+      // Local file header
+      const nameLen = view[i+26] | (view[i+27] << 8);
+      const extraLen = view[i+28] | (view[i+29] << 8);
+      const compLen = view[i+18] | (view[i+19] << 8) | (view[i+20] << 16);
+      const method = view[i+8] | (view[i+9] << 8);
+      const fname = new TextDecoder().decode(view.slice(i+30, i+30+nameLen));
+      
+      // Skip .DS_Store and system files
+      if(fname.includes("/.") || fname.endsWith(".DS_Store")) continue;
+      
+      const isImage = /\.(jpg|jpeg|png|gif|heic|heif|bmp)$/i.test(fname);
+      const isDoc = /\.(txt|md|json|csv|pdf)$/i.test(fname);
+      
+      if(isImage || isDoc){
+        results.push({name: fname, isImage, isDoc, type: method === 0 ? "stored" : "deflated"});
+      }
+      
+      i += 30 + nameLen + extraLen + (method === 8 ? 0 : compLen);
+    }
+  }
+  
+  return results;
+}
+
+async function handleFilesDrop(files){
+  const newPhotos = [];
+  for(const f of files){
+    if(f.type.startsWith("image/")){
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const id = "ph_" + Math.random().toString(36).slice(2, 11);
+        newPhotos.push({id, name: f.name, data: e.target.result, failed: false});
+        if(newPhotos.length === files.length) addPhotos(newPhotos);
+      };
+      reader.readAsDataURL(f);
+    } else if(f.name.endsWith(".zip")){
+      const items = await parseZip(f);
+      // Process ZIP items...
+    }
+  }
+}
+
+function addPhotos(photos){
+  S.photos.push(...photos);
+  S.an = {... S.an};  // Reset analysis per photo
+  renderFiles();
+  save();
+}
+
+// ===== Pass 1: Analyze (with retry queue) =====
+async function startPass1(){
+  if(!await checkCostGuardrails(S.photos.length)) return;
+  
+  pass1paused = false;
+  pass1queue = S.photos.map((p, i) => ({id: p.id, idx: i, retries: 0, nextRetry: 0}));
+  processPass1Queue();
+}
+
+async function processPass1Queue(){
+  while(pass1queue.length > 0 && !pass1paused){
+    const task = pass1queue[0];
+    const p = S.photos[task.idx];
+    
+    if(Date.now() < task.nextRetry){
+      await new Promise(resolve => setTimeout(resolve, task.nextRetry - Date.now()));
+    }
+    
+    try{
+      const result = await callWithRetry(() => analyzePhotoKimi(p));
+      S.an[p.id] = result;
+      S.an[p.id].done = true;  // Only mark done on success
+      pass1queue.shift();
+      renderFiles();
+      save();
+    }catch(e){
+      task.retries++;
+      if(task.retries >= 3){
+        S.an[p.id] = {failed: true, error: e.message, done: false};  // Never done on failure
+        pass1queue.shift();
+        renderFiles();
+        save();
+      } else {
+        task.nextRetry = Date.now() + (1000 * Math.pow(2, task.retries));
+        renderFiles();
+      }
+    }
+  }
+  
+  if(pass1queue.length === 0){
+    showCompletionDialog();
+  }
+}
+
+function pausePass1(){
+  pass1paused = true;
+}
+
+function resumePass1(){
+  pass1paused = false;
+  processPass1Queue();
+}
+
+function showCompletionDialog(){
+  const total = S.photos.length;
+  const analyzed = Object.values(S.an).filter(x => x.done).length;
+  const failed = Object.values(S.an).filter(x => x.failed).length;
+  
+  const modal = document.getElementById("completionModal");
+  document.getElementById("completionMsg").innerHTML = `
+    <strong>Pass 1 Complete</strong><br>
+    ${analyzed} analyzed · ${failed} failed · ${total - analyzed - failed} pending
+  `;
+  modal.classList.add("show");
+}
+
+async function analyzePhotoKimi(photo){
+  // Call Kimi vision API via server proxy
+  const b64 = photo.data.split(",")[1];
+  const payload = {
+    model: "kimi-k2.6",
+    messages: [
+      {role: "user", content: [
+        {type: "image_url", image_url: {url: `data:image/jpeg;base64,${b64}`}},
+        {type: "text", text: "Analyze this infrastructure photo. Return JSON only: {room, location, labels_read: [{text, where}], faces_visible: bool, condition: 'good'|'fair'|'poor', notes}"}
+      ]}
+    ],
+    temperature: 1,
+    max_tokens: 2000
+  };
+  
+  const resp = await callWithRetry(() =>
+    fetch("/proxy/api.moonshot.cn/v1/chat/completions", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      credentials: "same-origin",
+      body: JSON.stringify(payload)
+    }).then(x => ({status: x.status, json: () => x.json()}))
+  );
+  
+  const data = await resp.json();
+  if(data.error) throw new Error(data.error.message);
+  
+  const content = data.choices[0].message.content || data.choices[0].message.reasoning_content || "";
+  const jsonMatch = content.match(/\{[\s\S]*\}/);
+  if(!jsonMatch) throw new Error("No JSON in response");
+  
+  return JSON.parse(jsonMatch[0]);
+}
+
+// ===== UI Rendering =====
+function renderFiles(){
+  const stats = {
+    photos: S.photos.length,
+    analyzed: Object.values(S.an).filter(x => x.done).length,
+    failed: Object.values(S.an).filter(x => x.failed).length
+  };
+  
+  const html = S.photos.map(p => {
+    const a = S.an[p.id] || {};
+    const status = a.failed ? "❌" : a.done ? "✓" : "…";
+    const retry = a.failed ? `<button onclick="retryPhoto('${p.id}')" class="btn sec" style="font-size:.75rem;padding:4px 8px">Retry</button>` : "";
+    return `<div style="display:flex;gap:8px;padding:8px;border:1px solid var(--border2);border-radius:var(--r-md);align-items:center">
+      <img src="${p.data}" style="width:48px;height:48px;object-fit:cover;border-radius:var(--r-sm)">
+      <div style="flex:1">
+        <div style="font-weight:600">${status} ${p.name}</div>
+        ${a.room ? `<div style="font-size:.75rem;color:var(--text2)">${a.room}</div>` : ""}
+      </div>
+      ${retry}
+    </div>`;
+  }).join("");
+  
+  const el = document.getElementById("filesList");
+  if(el) el.innerHTML = html || "<p class='small'>📸 Drop images/folders/ZIPs</p>";
+  
+  const statsEl = document.getElementById("ingestStats");
+  if(statsEl) statsEl.textContent = `📸 ${stats.photos} · ${stats.analyzed} analyzed · ${stats.failed} failed`;
+}
+
+function gotoStep(n){
+  SHOW = n;
+  document.querySelectorAll("#mainnav button").forEach((b, i) => {
+    b.classList.toggle("on", i+1 === SHOW);
+  });
+  document.querySelectorAll("main > .card").forEach((c, i) => {
+    c.style.display = (i < 6 && SHOW === i+1) || i >= 6 ? "block" : "none";
+  });
+}
+
+// ===== Save/Load =====
+function save(){
+  localStorage.setItem("surveyState", JSON.stringify(S));
+  const payload = {S};
+  fetch("/api/state", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    credentials: "same-origin",
+    body: JSON.stringify(payload)
+  }).catch(e => console.warn("Save failed:", e));
+}
+
+async function loadState(){
+  try{
+    const r = await fetch("/api/state", {credentials: "same-origin"}).then(x => x.json());
+    if(r.S) S = r.S;
+    renderFiles();
+    checkVersionMismatch();
+    checkBalance();
+  }catch(e){
+    const cached = localStorage.getItem("surveyState");
+    if(cached) S = JSON.parse(cached);
+  }
+}
+
+// ===== Init =====
+window.onload = () => {
+  heicSupport = detectHEICSupport();
+  if(!heicSupport){
+    const banner = document.getElementById("heicBanner");
+    if(banner) banner.innerHTML = `<div class="banner warn">⚠️ HEIC photos not supported in this browser. Use Safari or pre-convert to JPEG.</div>`;
+  }
+  checkAuth();
+};
+</script>
+</head><body>
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-card">
+    <h2 style="margin-bottom:20px">Thinogic Survey Studio</h2>
+    <label>Username</label>
+    <input id="loginU" type="text" placeholder="jerry">
+    <label style="margin-top:16px">Password</label>
+    <input id="loginP" type="password" placeholder="">
+    <button class="btn" onclick="login()" style="width:100%;margin-top:24px">Login</button>
+    <p style="text-align:center;margin-top:12px;font-size:.8rem;color:var(--text2)">v4.2.0</p>
+  </div>
+</div>
+
+<div class="app">
+  <aside>
+    <div class="brand">
+      <div class="logo">🔧</div>
+      <div class="bt">
+        <b>Thinogic</b>
+        <span>Survey v4.2</span>
+      </div>
+    </div>
+    <nav id="mainnav">
+      <button class="on" onclick="gotoStep(1)"><div class="n">1</div> Connect</button>
+      <button onclick="gotoStep(2)"><div class="n">2</div> Ingest</button>
+      <button onclick="gotoStep(3)"><div class="n">3</div> Cluster</button>
+      <button onclick="gotoStep(4)"><div class="n">4</div> Buildings</button>
+      <button onclick="gotoStep(5)"><div class="n">5</div> Ask Kimi</button>
+      <button onclick="gotoStep(6)"><div class="n">6</div> Publish</button>
+    </nav>
+    <div class="side-foot">
+      <div style="margin-bottom:8px">User: <strong>${currentUser || "—"}</strong></div>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </aside>
+
+  <main id="studio-ui">
+    <!-- Step 1: Connect -->
+    <div class="card">
+      <h2>Connect <span class="step">Step 1</span></h2>
+      <p class="small">Set up your Kimi API connection</p>
+      <div id="balanceBanner"></div>
+      <div id="versionBanner"></div>
+      <label>Model</label>
+      <select id="model" onchange="save()">
+        <option value="kimi-k2.6">kimi-k2.6 (262k context, vision)</option>
+        <option value="kimi-k3">kimi-k3 (reasoning, slower)</option>
+      </select>
+      <div style="margin-top:16px">
+        <button class="btn" onclick="checkBalance()">🔄 Refresh Balance</button>
+        <button class="btn sec" onclick="testConnection()" style="margin-left:8px">Test Connection</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Ingest -->
+    <div class="card" style="display:none">
+      <h2>Ingest <span class="step">Step 2</span></h2>
+      <p class="small" id="ingestStats">📸 0 · 0 analyzed · 0 failed</p>
+      <div id="heicBanner"></div>
+      <div class="file-input">
+        <input type="file" multiple accept="image/*,.zip,.pdf,.txt,.md,.json,.csv" onchange="e => handleFilesDrop(Array.from(e.target.files))">
+        <button class="btn">+ Drop Photos/Folders/ZIPs</button>
+      </div>
+      <div id="filesList" style="margin-top:16px"></div>
+      <div style="margin-top:16px">
+        <button class="btn" onclick="startPass1()">Analyze All</button>
+        <button class="btn sec" onclick="pausePass1()" style="margin-left:8px">Pause</button>
+        <button class="btn sec" onclick="resumePass1()" style="margin-left:8px">Resume</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Cluster -->
+    <div class="card" style="display:none">
+      <h2>Cluster <span class="step">Step 3</span></h2>
+      <p class="small">Group photos by building and room</p>
+      <p>Clustering UI — Pass 2/3 logic TBD (group by timestamps, labels, visual continuity)</p>
+    </div>
+
+    <!-- Step 4: Buildings & Deliverables -->
+    <div class="card" style="display:none">
+      <h2>Buildings & Jerry <span class="step">Step 4</span></h2>
+      <p class="small">Per-building assessment, coverage, & deliverables checklist</p>
+      <p>Building intake form, 24-item checklist, 7-item §7 pricing, cert table TBD</p>
+    </div>
+
+    <!-- Step 5: Ask Kimi -->
+    <div class="card" style="display:none">
+      <h2>Ask Kimi <span class="step">Step 5</span></h2>
+      <p class="small">Project-aware chat, add answers to survey</p>
+      <p>Chat interface TBD</p>
+    </div>
+
+    <!-- Step 6: Validate & Publish -->
+    <div class="card" style="display:none">
+      <h2>Validate & Ship <span class="step">Step 6</span></h2>
+      <p class="small">Export HTML, PDF, CSV, JSON, or publish to public link</p>
+      <div style="margin-top:16px">
+        <button class="btn" onclick="expBeautiful()">📄 Download HTML</button>
+        <button class="btn sec" onclick="makePDF()" style="margin-left:8px">🖨️ Print/PDF</button>
+        <button class="btn sec" onclick="expInv()" style="margin-left:8px">📊 Export CSV</button>
+        <button class="btn sec" onclick="expJSON()" style="margin-left:8px">💾 Save Project</button>
+      </div>
+      <div style="margin-top:16px">
+        <label>Or publish live:</label>
+        <button class="btn" onclick="publishClient()" style="width:100%">🚀 Publish HTML</button>
+        <div id="pubMsg" style="margin-top:8px;font-size:.8rem"></div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Completion Modal -->
+<div id="completionModal" class="modal">
+  <div class="modal-content">
+    <h3>✓ Pass 1 Complete</h3>
+    <div id="completionMsg" style="margin:16px 0"></div>
+    <button class="btn" onclick="document.getElementById('completionModal').classList.remove('show')" style="width:100%;margin-top:16px">Continue</button>
+  </div>
+</div>
+
+</body></html>
