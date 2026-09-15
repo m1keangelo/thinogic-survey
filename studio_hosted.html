@@ -19,9 +19,11 @@ body{font-family:var(--font);background:var(--bg);color:var(--text);-webkit-font
 ::selection{background:rgba(0,113,227,.2)}
 button,input,select,textarea{font-family:inherit}
 
+/* ===== app frame ===== */
 .app{display:flex;min-height:100vh}
 #studio-ui{display:flex;flex:1;min-width:0}
 
+/* ===== sidebar ===== */
 aside{width:252px;background:var(--surface);border-right:1px solid var(--border2);position:sticky;top:0;height:100vh;display:flex;flex-direction:column;flex-shrink:0;z-index:20}
 .brand{display:flex;align-items:center;gap:11px;padding:22px 18px 18px}
 .brand .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--teal-d),var(--teal));display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:var(--sh-sm)}
@@ -38,567 +40,967 @@ nav#mainnav{padding:6px 10px;flex:1;overflow-y:auto}
 .side-foot button{margin-top:8px;width:100%;background:none;border:1px solid var(--border2);border-radius:var(--pill);padding:6px 0;font-size:12px;color:var(--text2);cursor:pointer;transition:.15s}
 .side-foot button:hover{background:var(--fill);color:var(--text)}
 
-main{flex:1;padding:38px 46px 80px;min-width:0;max-width:1160px;overflow-y:auto}
+/* ===== main ===== */
+main{flex:1;padding:38px 46px 80px;min-width:0;max-width:1160px}
 .ptitle{margin-bottom:22px}
 .ptitle h2{font-size:26px;font-weight:700;letter-spacing:-.02em}
 .ptitle p{font-size:14px;color:var(--text2);margin-top:3px}
 
+/* ===== cards ===== */
 .card{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-lg);padding:24px 26px;margin-bottom:18px;box-shadow:var(--sh-sm)}
-.card>h2,.card h2{font-size:16px;font-weight:700;letter-spacing:-.01em;color:var(--text);padding-bottom:0;margin:0 0 4px;display:flex;align-items:center;gap:8px}
+.card>h2,.card h2{font-size:16px;font-weight:700;letter-spacing:-.01em;color:var(--text);border-bottom:none;padding-bottom:0;margin:0 0 4px;display:flex;align-items:center;gap:8px}
 .card h2 .step{margin-left:auto;font-size:11px;font-weight:600;color:var(--text3);background:var(--fill);border-radius:var(--pill);padding:3px 10px}
 .card h3{font-size:13.5px;font-weight:600;color:var(--text);margin:16px 0 6px}
 p.small, .small{font-size:12.5px;color:var(--text2)}
 
+/* ===== forms ===== */
 label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin:12px 0 5px;letter-spacing:.01em}
 input,select,textarea{width:100%;padding:10px 13px;border:1px solid var(--border);border-radius:var(--r-md);font-size:14px;background:#fff;color:var(--text);outline:none;transition:border-color .15s,box-shadow .15s;-webkit-appearance:none;appearance:none}
 select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236e6e73' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 13px center;padding-right:32px}
 input:focus,select:focus,textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3.5px rgba(0,113,227,.18)}
 textarea{min-height:64px;resize:vertical;line-height:1.45}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--accent);color:#fff;border:none;border-radius:var(--pill);padding:10px 21px;font-size:14px;font-weight:500;cursor:pointer;transition:background .16s,transform .1s;letter-spacing:.01em;text-decoration:none}
-.btn:hover{background:var(--accent-d)}
-.btn:active{transform:scale(.98)}
-.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.btn.sec{background:var(--fill);color:var(--text)}
-.btn.sec:hover{background:#eaeaee}
-
-.banner{padding:12px 14px;border-radius:var(--r-md);margin-bottom:12px;font-size:13px;display:flex;align-items:center;gap:10px}
-.banner.err{background:#fbe4e1;border:1px solid #ddb8b3;color:#b23a2f}
-.banner.warn{background:#fdf3dc;border:1px solid #f5d78e;color:#a67c00}
-.banner.ok{background:#d1f4e8;border:1px solid #a3ead6;color:#0a6e48}
-
-.login-overlay{display:flex;align-items:center;justify-content:center;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.4);z-index:1000}
-.login-card{background:#fff;border-radius:var(--r-lg);padding:40px 36px;max-width:360px;box-shadow:var(--sh-md)}
-
-.file-input{position:relative;display:inline-block}
-.file-input input{display:none}
-.file-input .btn{margin:0}
-
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
-@media(max-width:760px){.grid2,.grid3{grid-template-columns:1fr}}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:0 28px}
+@media(max-width:760px){.grid2,.grid3,.grid4,.two-col{grid-template-columns:1fr}}
 
-/* Modal dialog */
-.modal{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center}
-.modal.show{display:flex}
-.modal-content{background:#fff;border-radius:var(--r-lg);padding:32px;max-width:500px;max-height:80vh;overflow-y:auto;box-shadow:var(--sh-md)}
-.modal h3{font-size:18px;font-weight:700;margin-bottom:12px}
-</style>
+/* ===== buttons ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;background:var(--accent);color:#fff;border:none;border-radius:var(--pill);padding:10px 21px;font-size:14px;font-weight:500;cursor:pointer;transition:background .16s,transform .1s,opacity .16s;letter-spacing:.01em;text-decoration:none}
+.btn:hover{background:var(--accent-d)}
+.btn:active{transform:scale(.98)}
+.btn.sec{background:var(--fill);color:var(--text)}
+.btn.sec:hover{background:#eaeaee}
+.btn.big{padding:14px 28px;font-size:15px;font-weight:600}
+.btn.ok{background:var(--green)}
+.btn.warn{background:var(--red)}
+.btn:disabled{opacity:.38;cursor:default;transform:none}
+
+/* ===== drop zone ===== */
+#drop{border:1.5px dashed #b9c4cc;border-radius:14px;padding:44px 20px;text-align:center;color:var(--teal);font-weight:600;font-size:15px;cursor:pointer;background:var(--fill2);transition:.18s}
+#drop.over,#drop:hover{border-color:var(--teal);background:#eef6f8}
+
+/* ===== progress ===== */
+.bar{height:5px;background:#e4e4e9;border-radius:var(--pill);overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),#42a5f5);width:0%;border-radius:var(--pill);transition:width .35s ease}
+#prog{font-weight:600;color:var(--teal-d);margin:10px 0;font-size:13.5px}
+
+/* ===== tables ===== */
+table{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+th{background:var(--fill);color:var(--text2);padding:8px 10px;font-size:10.5px;text-transform:uppercase;letter-spacing:.05em;text-align:left;font-weight:600;border-bottom:1px solid var(--border2)}
+td{padding:7px 8px;border-bottom:1px solid var(--border2);vertical-align:top}
+td input,td select,td textarea{padding:6px 9px;font-size:13px;border-radius:7px}
+tr:last-child td{border-bottom:none}
+
+/* ===== badges & validation ===== */
+.badge{display:inline-block;padding:2.5px 11px;border-radius:var(--pill);font-size:11px;font-weight:600;letter-spacing:.02em}
+.b-SEV{background:#ffe9e7;color:#d70015}.b-MOD{background:#fff4e0;color:#c93400}.b-MIN{background:#e6f9ec;color:#1f7a3d}
+.val-item{display:flex;gap:10px;align-items:flex-start;padding:9px 12px;border-radius:var(--r-md);margin:5px 0;font-size:13px}
+.val-ok{background:#e6f9ec;color:#1f7a3d}.val-warn{background:#fff4e0;color:#8a5a00}.val-bad{background:#ffe9e7;color:#c01b2b}
+.val-item b{flex:1;color:inherit}
+
+/* ===== checks ===== */
+.check{display:flex;gap:9px;align-items:center;padding:7px 0;border-bottom:1px solid var(--border2);font-size:13.5px}
+.check:last-child{border-bottom:none}
+.check .nm{flex:1}
+.check select{max-width:150px}
+.check input{max-width:130px}
+
+/* ===== chat ===== */
+#chatBox{height:360px;overflow-y:auto;border:1px solid var(--border2);border-radius:var(--r-lg);padding:16px;background:var(--fill2)}
+.msg{max-width:78%;padding:11px 15px;border-radius:18px;margin:7px 0;font-size:13.5px;line-height:1.5;white-space:pre-wrap;box-shadow:var(--sh-sm)}
+.msg.user{margin-left:auto;background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+.msg.ai{background:#fff;border:1px solid var(--border2);border-bottom-left-radius:4px}
+
+/* ===== clusters ===== */
+.cluster{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-lg);margin:14px 0;overflow:hidden;box-shadow:var(--sh-sm)}
+.cl-head{background:var(--fill);padding:11px 16px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--border2)}
+.cl-head b{font-size:14px;color:var(--text)}
+.cl-thumbs{display:flex;flex-wrap:wrap;gap:9px;padding:14px 16px}
+.pwrap{width:108px;font-size:11px;color:var(--text3)}
+.pwrap img{width:108px;height:80px;object-fit:cover;border-radius:9px;border:1px solid var(--border2);display:block;cursor:zoom-in;transition:transform .15s}
+.pwrap img:hover{transform:scale(1.03)}
+.pwrap.flag img{border:2px solid var(--red)}
+#thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.thumb{width:80px;height:80px;object-fit:cover;border-radius:10px;border:1px solid var(--border2)}
+
+/* ===== file chips ===== */
+#filelist span{display:inline-block;margin:3px;padding:4px 10px;border-radius:var(--pill);font-size:12px;border:1px solid var(--border2);cursor:pointer;background:#fff;transition:.14s}
+#filelist span:hover{border-color:var(--accent)}
+
+/* ===== login overlay (Apple-style) ===== */
+#loginOverlay{position:fixed;inset:0;background:radial-gradient(120% 120% at 20% 0%,#155e72 0%,var(--teal-d) 55%,#08222b 100%);z-index:999;align-items:center;justify-content:center;backdrop-filter:saturate(1.2)}
+#loginOverlay .lcard{background:rgba(255,255,255,.96);border-radius:20px;padding:36px 34px;width:352px;box-shadow:0 24px 80px rgba(0,0,0,.45);text-align:left}
+#loginOverlay .lcard .lt{font-size:21px;font-weight:700;letter-spacing:-.02em;color:var(--text)}
+#loginOverlay .lcard .ls{font-size:12.5px;color:var(--text2);margin:5px 0 18px}
+#loginOverlay input{background:var(--fill);border-color:transparent}
+#loginOverlay input:focus{background:#fff}
+#loginOverlay .btn{width:100%;margin-top:16px;padding:12px}
+#liErr{color:#d70015;font-weight:600;font-size:13px;margin-top:11px;min-height:1em;text-align:center}
+
+/* ===== tabs ===== */
+.tab{display:none}
+.tab.on{display:block;animation:fadeUp .28s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ===== report (preview) ===== */
+#report{max-width:1000px}
+.rpt-bld{background:var(--surface);border:1px solid var(--border2);border-radius:var(--r-lg);margin:18px 0;overflow:hidden;box-shadow:var(--sh-sm);page-break-inside:avoid}
+.rpt-head{background:linear-gradient(135deg,var(--teal-d),var(--teal));color:#fff;padding:15px 19px;font-size:15px;font-weight:700}
+.rpt-stats{display:flex;gap:10px;flex-wrap:wrap;padding:15px 19px;background:var(--fill2);border-bottom:1px solid var(--border2)}
+.stat{background:#fff;border:1px solid var(--border2);border-radius:12px;padding:9px 15px;text-align:center;min-width:84px}
+.stat b{display:block;font-size:20px;font-weight:700;color:var(--teal-d);letter-spacing:-.02em}
+.stat span{font-size:10px;text-transform:uppercase;color:var(--text3);letter-spacing:.04em;font-weight:600}
+.rpt-body{padding:16px 19px}
+.rpt-body h4{color:var(--text);margin:13px 0 6px;font-size:13.5px;font-weight:700}
+.finding{padding:9px 13px;border-left:4px solid var(--border);margin:7px 0;background:var(--fill2);border-radius:0 10px 10px 0;font-size:13px;line-height:1.5}
+.finding.SEVERE{border-color:var(--red)}.finding.Moderate{border-color:var(--orange)}.finding.Minor{border-color:var(--green)}
+.action{background:var(--accent-t);color:var(--teal-d);border-radius:10px;padding:9px 14px;margin:6px 0;font-size:13px}
+.evrow{display:flex;gap:12px;padding:9px 0;border-bottom:1px dashed var(--border2);font-size:12.5px}
+.evrow img{width:150px;border-radius:10px;border:1px solid var(--border2)}
+
+footer.global{display:none}
+@media(max-width:900px){aside{display:none}main{padding:22px}}
+
+/* ===== print ===== */
+@media print{aside,.tab,.ptitle,#loginOverlay{display:none!important}#studio-ui{display:block!important}body{background:#fff}#report{display:block!important}.card,.rpt-bld{box-shadow:none;border:1px solid #ddd}}
+</style></head>
+<body>
+<div id="credBanner" style="display:none;position:sticky;top:0;z-index:998;background:#d70015;color:#fff;padding:10px 18px;font-size:13px;font-weight:600;align-items:center;gap:12px;box-shadow:0 2px 10px rgba(0,0,0,.25)">
+ <span id="credTxt" style="flex:1"></span>
+ <button onclick="dismissCredit()" style="background:rgba(255,255,255,.22);border:none;color:#fff;border-radius:7px;padding:4px 12px;cursor:pointer;font-weight:600">Dismiss</button>
+</div>
+<div id="loginOverlay" style="display:none">
+  <div class="lcard">
+    <div class="lt">🏛️ Thinogic Survey Studio</div>
+    <div class="ls">Dumbarton Oaks Campus Cabling Assessment · RFP DOIT-2026-001</div>
+    <label style="margin-top:2px">Username</label>
+    <input id="liU" autocomplete="username">
+    <label>Password</label>
+    <input id="liP" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn big" onclick="doLogin()">Sign In</button>
+    <div id="liErr"></div>
+  </div>
+</div>
+
+<div class="app" id="studio-ui">
+<aside>
+  <div class="brand"><div class="logo">🏛️</div><div class="bt"><b>Survey Studio</b><span>Thinogic · Dumbarton Oaks</span></div></div>
+  <div style="padding:0 14px 12px;border-bottom:1px solid var(--border2);margin-bottom:8px">
+  <select id="svSel" onchange="switchSurvey(this.value)" style="font-size:12.5px;padding:8px 10px;margin-bottom:6px"></select>
+  <button onclick="newSurvey()" style="width:100%;background:var(--fill);border:none;border-radius:8px;padding:7px;font-size:12px;font-weight:600;color:var(--text);cursor:pointer">＋ New survey</button>
+</div>
+<nav id="mainnav">
+    <button data-t="connect" class="on"><span class="n">1</span>Connect</button>
+    <button data-t="ingest"><span class="n">2</span>Ingest Photos</button>
+    <button data-t="cluster"><span class="n">3</span>Cluster &amp; Verify</button>
+    <button data-t="work"><span class="n">4</span>Buildings &amp; Jerry</button>
+    <button data-t="chat"><span class="n">5</span>Ask Kimi</button>
+    <button data-t="ship"><span class="n">6</span>Validate &amp; Ship</button>
+  </nav>
+  <div class="side-foot"><div id="sbBal" style="font-weight:700;font-size:12.5px;margin-bottom:3px;color:var(--text)"></div><div id="verLine" style="font-size:10.5px;color:var(--text3);margin-bottom:6px">…</div><button onclick="logout()">Log out</button></div>
+</aside>
+
+<main>
+<!-- 1 CONNECT -->
+<div class="tab on" id="tab-connect">
+  <div class="ptitle"><h2>Connect to Kimi</h2><p>Your API key is managed securely by the server — leave the field empty.</p></div>
+  <div class="card">
+    <h2>API Connection <span class="step">Step 1 · once</span></h2>
+    <div class="grid3">
+      <div><label>API Key (server-managed)</label><input type="password" id="key" placeholder="leave blank — server holds the key"></div>
+      <div><label>Model (vision)</label><input id="model" value="moonshot-v1-8k"></div>
+      <div><label>Region</label><select id="region"><option value="https://api.moonshot.ai">Global</option><option value="https://api.moonshot.cn">China</option></select></div>
+    </div>
+    <div style="margin-top:16px"><button class="btn sec" onclick="testKey()">Test Connection</button> <span id="keymsg" style="font-weight:600"></span> <button class="btn sec" onclick="checkBal()">Balance</button> <span id="balMsg" style="font-weight:600"></span></div>
+    <p class="small" style="margin-top:14px">Everything auto-saves in this browser after every action. Use <b>Save Project File / Load Project File</b> in step 6 to keep a portable copy forever — that is Jerry&rsquo;s &ldquo;pick up where we left off, even years later&rdquo; button.</p>
+  </div>
+</div>
+
+<!-- 2 INGEST -->
+<div class="tab" id="tab-ingest">
+  <div class="ptitle"><h2>Ingest Photos</h2><p>Drop your folders or ZIPs — any mix of buildings. Pass 1 analyzes every photo in full detail.</p></div>
+  <div class="card">
+    <h2>Drop mixed photos, folders, or ZIPs <span class="step">Step 2</span></h2>
+    <div id="heicWarn"></div>
+    <div id="drop">📁 Drop photos, folders, ZIPs — or .txt/.md/.json chat exports & notes<input type="file" id="files" accept="image/*,.zip,.txt,.md,.json,.csv" multiple style="display:none"></div>
+    <div id="filelist" style="margin-top:12px"></div>
+    <div style="margin-top:16px">
+      <button class="btn sec" id="reanBtn" onclick="resetFailed()" style="display:none">\u21bb Re-analyze failed</button>
+    <button class="btn big" id="go1" onclick="pass1()">🔍 Pass 1 — Analyze every photo in full detail</button>
+      <div class="bar"><i id="bar1"></i></div><div id="prog1"></div>
+      <p class="small" style="margin-top:10px">Captures everything: room, equipment, legible labels, cable counts, condition, findings with likelihood×impact, standards gaps, BOM suggestions, privacy flags. Nothing is summarized away.</p>
+    </div>
+  </div>
+  <div class="card" id="photoDetail" style="display:none"><h2>Per-photo detail</h2><div id="pdBody"></div></div>
+</div>
+
+<!-- 3 CLUSTER -->
+<div class="tab" id="tab-cluster">
+  <div class="ptitle"><h2>Cluster &amp; Verify Buildings</h2><p>AI groups photos by timestamp, rack labels &amp; visual similarity — then verifies every assignment. You approve before locking.</p></div>
+  <div class="card">
+    <h2>3-Pass building assignment</h2>
+    <p class="small" style="margin-bottom:12px">Pass 2 proposes groups. Pass 3 re-checks each photo and flags strays. Nothing is silently assigned — confirm, rename, or move before locking.</p>
+    <button class="btn big" id="go2" onclick="pass2()" disabled>🧩 Pass 2 — Propose building groups</button>
+    <button class="btn" id="go3" onclick="pass3()" disabled>🔎 Pass 3 — Verify assignments</button>
+    <div class="bar"><i id="bar2"></i></div><div id="prog2"></div>
+  </div>
+  <div id="clusters"></div>
+  <div class="card" id="lockCard" style="display:none"><button class="btn ok big" onclick="lockClusters()">🔒 Lock building mapping — enables survey build</button> <span id="lockmsg" style="font-weight:700;color:var(--green);margin-left:8px"></span></div>
+</div>
+
+<!-- 4 WORK -->
+<div class="tab" id="tab-work">
+  <div class="ptitle"><h2>Buildings &amp; Jerry&rsquo;s Workspace</h2><p>Executive summaries, coverage, observations, deliverables, pricing &amp; certification — editable forever.</p></div>
+  <div class="card">
+    <h2>Building workspace <span class="step">Step 4</span></h2>
+    <div class="grid3">
+      <div><label>Building</label><select id="wB" onchange="renderW()"></select></div>
+      <div><label>Overall condition</label><select id="wCond" onchange="E().cond=this.value;save();log('Set '+CURB()+' condition to '+this.value)"><option>Good</option><option>Fair</option><option>Poor</option><option>Critical</option></select></div>
+      <div><label>Coverage: rooms photographed</label><input type="number" id="wRooms" oninput="E().rooms=+this.value;save()"></div>
+    </div>
+    <div class="grid2">
+      <div><label>Coverage: estimated total rooms/IDFs</label><input type="number" id="wTot" oninput="E().tot=+this.value;save()"></div>
+      <div><label>Areas NOT accessed (reviewers check this)</label><input id="wNA" placeholder="e.g., 3rd floor offices, attic pathways" oninput="E().na=this.value;save()"></div>
+    </div>
+    <label>Executive summary — key findings</label><textarea id="wFind" oninput="E().findings=this.value;save()"></textarea>
+    <label>Major risks</label><textarea id="wRisk" oninput="E().risks=this.value;save()"></textarea>
+    <label>Budget considerations (ROM)</label><textarea id="wBud" oninput="E().budget=this.value;save()"></textarea>
+    <label>Jerry&rsquo;s professional observations</label><textarea id="wObs" style="min-height:90px" oninput="E().obs=this.value;save()"></textarea>
+    <div id="wExtra"></div>
+  </div>
+  <div class="card"><h2>Deliverables checklist (RFP §6)</h2><div class="grid2" id="delivList"></div></div>
+  <div class="card"><h2>Optional services — separate pricing (RFP §7)</h2><div id="optList"></div></div>
+  <div class="card"><h2>Certification results (Phase 2 ready)</h2>
+    <table><thead><tr><th>Building</th><th>Cable ID</th><th>Standard</th><th>Result</th><th>Date</th><th>Technician</th></tr></thead><tbody id="certBody"></tbody></table>
+    <button class="btn sec" style="margin-top:10px" onclick="addCert()">+ Add cert row</button>
+  </div>
+</div>
+
+<!-- 5 CHAT -->
+<div class="tab" id="tab-chat">
+  <div class="ptitle"><h2>Ask Kimi</h2><p>Project-aware — it knows your buildings, findings and photos. Add any answer straight into the survey.</p></div>
+  <div class="card">
+    <div id="chatBox"></div>
+    <div class="grid2" style="margin-top:12px;align-items:end">
+      <div><label>Your question</label><textarea id="chatIn" placeholder="e.g., Draft budget language for Operations Building backbone replacement…"></textarea></div>
+      <div><label>Building context (optional)</label><select id="chatB"><option value="">— campus-wide —</option></select>
+        <div style="margin-top:10px"><button class="btn" onclick="chatSend()">Send</button></div></div>
+    </div>
+    <p class="small" style="margin-top:10px">Under every answer: <b>＋ Add to survey</b> appends it to that building&rsquo;s professional observations.</p>
+  </div>
+</div>
+
+<!-- 6 SHIP -->
+<div class="tab" id="tab-ship">
+  <div class="ptitle"><h2>Validate &amp; Ship</h2><p>Confirm nothing is missing — then publish the client link and PDF.</p></div>
+  <div class="card"><h2>Coverage &amp; validation</h2><div id="valList"></div></div>
+  <div class="card">
+    <h2>Generate &amp; publish <span class="step">Step 6</span></h2>
+    <div id="verLine" style="font-weight:700;margin-bottom:6px"></div>
+    <label>Changelog note (optional)</label><input id="clNote" placeholder="e.g., Added Jerry's Main House observations" style="margin-bottom:10px">
+    <button class="btn big" onclick="renderReport(true)">📋 Preview Survey</button>
+    <button class="btn" onclick="expBeautiful()">✨ Download Offline HTML</button>
+    <button class="btn sec" onclick="window.print()">🖨 Print / Save PDF</button>
+    <div style="margin:14px 0 4px;border-top:1px solid var(--border2);padding-top:14px"></div>
+    <button class="btn" onclick="publishClient()">🚀 Publish HTML for client</button> <span id="pubMsg" style="font-weight:700"></span><br>
+    <button class="btn sec" onclick="makePDF()">🖨 Create PDF (print → Save as PDF)</button>
+    <button class="btn sec" onclick="document.getElementById('pdfUp').click()">📤 Upload PDF for client link</button>
+    <input type="file" id="pdfUp" accept="application/pdf" style="display:none" onchange="uploadPDF(this)"> <span id="pdfMsg" style="font-weight:700"></span>
+    <div style="margin:14px 0 4px;border-top:1px solid var(--border2);padding-top:14px"></div>
+    <button class="btn sec" onclick="expInv()">⬇ Inventory CSV</button>
+    <button class="btn sec" onclick="expJSON()">💾 Save Project File</button>
+    <button class="btn sec" onclick="document.getElementById('imp').click()">📂 Load Project File</button>
+    <input type="file" id="imp" accept=".json" style="display:none" onchange="importProject(this)">
+    <h2 style="margin-top:20px">GitHub publish (optional mirror)</h2>
+    <div class="grid4">
+      <div><label>GitHub token (repo scope)</label><input type="password" id="ghT"></div>
+      <div><label>Owner</label><input id="ghO" placeholder="your-username"></div>
+      <div><label>Repo</label><input id="ghR" placeholder="dumbarton-survey"></div>
+      <div><label>File path</label><input id="ghP" value="index.html"></div>
+    </div>
+    <button class="btn sec" style="margin-top:10px" onclick="publish()">Publish to GitHub</button> <span id="ghMsg" style="font-weight:700"></span>
+    <p class="small" style="margin-top:6px">Live URL: <span id="ghUrl" style="font-weight:700">https://[user].github.io/[repo]/</span></p>
+  </div>
+</div>
+</main>
+</div>
+<div id="report"></div>
 <script>
-"use strict";
+function safe(f){try{f()}catch(e){}}
+async function checkVersion(){try{var r=await fetch('/api/version',{credentials:'same-origin'});var j=await r.json();var sv=j.version||'?';var el=document.getElementById('verLine');if(!el)return;el.textContent='Survey Studio v'+CLIENT_VER+' \u00B7 server v'+sv;if(sv!==CLIENT_VER){el.textContent+=' \u26A0 MISMATCH \u2014 redeploy both files';el.style.color='#d70015';el.style.fontWeight='700'}else{el.style.color='var(--text3)'}}catch(e){var el=document.getElementById('verLine');if(el){el.textContent='Survey Studio v'+CLIENT_VER+' \u00B7 server \u2717 unreachable';el.style.color='#d70015'}}}
 
-// Version constants
-const STUDIO_VERSION = "4.2.0";
-const CLIENT_VERSION = "4.2.0";
-
-// Global state
-let S = {
-  photos: [],
-  an: {},
-  clusters: [],
-  locked: false,
-  meta: {name: "Untitled"},
-  ver: CLIENT_VERSION
-};
-let SHOW = 1;  // Current step (1-6)
-let currentUser = null;
-let heicSupport = false;
-let pass1paused = false;
-let pass1queue = [];  // [{id, retries, nextRetry}]
-let balance = null;
-
-// ===== Auth & Session =====
-async function checkAuth(){
-  const t = getCookie("tl_sess");
-  if(!t || !localStorage.getItem("authToken")){
-    showLoginOverlay();
-  } else {
-    localStorage.setItem("authToken", t);
-    currentUser = localStorage.getItem("currentUser") || "unknown";
-    loadState();
-  }
-}
-
-async function login(){
-  const u = document.getElementById("loginU").value.trim();
-  const p = document.getElementById("loginP").value.trim();
-  if(!u || !p){alert("Fill username and password");return}
+async function loadSurveys(){try{var r=await fetch('/api/surveys',{credentials:'same-origin'});if(!r.ok)return;var j=await r.json();var sel=document.getElementById('svSel');if(!sel)return;sel.innerHTML=(j.list||[]).map(function(x){return '<option value="'+x.id+'"'+(x.id===j.current?' selected':'')+'>'+esc(x.name)+' ('+x.photos+')</option>'}).join('')}catch(e){}}
+async function switchSurvey(id){if(!id)return;try{var r=await fetch('/api/survey/switch',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({id:id})});var j=await r.json();if(j.S){S=j.S;localStorage.setItem('tsv3',JSON.stringify(S));refreshAll()}}catch(e){alert('Switch failed: '+e.message)}}
+async function newSurvey(){var name=prompt('Name this survey (e.g., Dumbarton Oaks — Sept walkthrough):');if(!name||!name.trim())return;try{var r=await fetch('/api/survey/new',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({name:name.trim()})});var j=await r.json();if(j.S){S=j.S;localStorage.setItem('tsv3',JSON.stringify(S));refreshAll()}}catch(e){alert('Create failed: '+e.message)}}
+function refreshAll(){safe(function(){document.getElementById('go2').disabled=!S.photos.some(function(p){return p.done})});safe(renderFiles);safe(function(){if(S.clusters.length){renderClusters();if(S.locked)lockClusters()}});safe(renderW);safe(renderDeliv);safe(renderOpts);safe(renderCert);safe(renderChat);safe(function(){if(document.getElementById('tab-ship').classList.contains('on'))renderVal()});safe(loadSurveys);safe(function(){checkBal(true)})}
+function unescPdf(t){return t.replace(/\\([nrtbf()\\]|[0-7]{1,3})/g,function(m,g){var map={n:'\n',r:'\r',t:'\t',b:'\b',f:'\f','(':'(',')':')','\\':'\\'};if(map[g]!==undefined)return map[g];try{return String.fromCharCode(parseInt(g,8))}catch(e){return ''}})}
+async function extractPDFText(file){
+ var buf=new Uint8Array(await file.arrayBuffer()),dec=new TextDecoder('latin1'),out=[],marker=0;
+ function findStr(from,word){var w=word.charCodeAt?null:null;for(var i=from;i<buf.length-word.length;i++){var ok=true;for(var k=0;k<word.length;k++){if(buf[i+k]!==word.charCodeAt(k)){ok=false;break}}if(ok)return i}return -1}
+ while(marker<buf.length-10){
+  var idx=findStr(marker,'stream');if(idx<0)break;
+  var dstart=idx+6;if(buf[dstart]===13)dstart++;if(buf[dstart]===10)dstart++;
+  var eidx=findStr(dstart,'endstream');if(eidx<0)break;
+  var dict=dec.decode(buf.slice(Math.max(0,idx-500),idx));
+  var data=buf.slice(dstart,eidx);
   try{
-    const r = await fetch("/api/login", {
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      credentials:"same-origin",
-      body:JSON.stringify({u,p})
-    }).then(x => x.json());
-    if(r.error) throw new Error(r.error);
-    localStorage.setItem("authToken", "ok");
-    localStorage.setItem("currentUser", u);
-    currentUser = u;
-    document.getElementById("loginOverlay").style.display = "none";
-    loadState();
-  }catch(e){
-    alert("Login failed: " + e.message);
-  }
+   if(dict.indexOf('FlateDecode')>-1){var ds=new DecompressionStream('deflate-raw');data=new Uint8Array(await new Response(new Blob([data]).stream().pipeThrough(ds)).arrayBuffer())}
+   var tx=dec.decode(data),m;
+   var r1=/\(((?:\\.|[^\\)])*)\)\s*Tj/g;
+   while((m=r1.exec(tx)))out.push(unescPdf(m[1]));
+   var r2=/\[(.*?)\]\s*TJ/g;
+   while((m=r2.exec(tx))){var parts=[],r3=/\(((?:\\.|[^\\)])*)\)/g,mm;while((mm=r3.exec(m[1])))parts.push(unescPdf(mm[1]));out.push(parts.join(''))}
+  }catch(err){}
+  marker=eidx+9;
+ }
+ return out.join('\n');
 }
+function showLogin(msg){var o=document.getElementById('loginOverlay');o.style.display='flex';if(msg!==undefined)document.getElementById('liErr').textContent=msg||'';setTimeout(function(){var u=document.getElementById('liU');if(u)u.focus()},50)}
+function hideLogin(){document.getElementById('loginOverlay').style.display='none'}
+async function doLogin(){var u=(document.getElementById('liU').value||'').trim(),p=document.getElementById('liP').value||'';
+ try{var r=await fetch('/api/login',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({u:u,p:p})});
+ if(r.ok){hideLogin();bootLoad()}else{document.getElementById('liErr').textContent='Wrong username or password'}}
+ catch(e){document.getElementById('liErr').textContent='Network error — try again'}}
+async function bootLoad(){try{var r=await fetch('/api/state',{credentials:'same-origin'});
+ if(r.status===401){showLogin('');return}
+ var D=await r.json();
+ if(D&&D.S){for(var k in S)if(D.S[k]!==undefined)S[k]=D.S[k];localStorage.setItem('tsv3',JSON.stringify(S));renderFiles();
+  if(S.clusters.length){document.getElementById('go2').disabled=false;renderClusters();
+   if(S.locked){lockClusters();document.getElementById('lockmsg').textContent='\u2713 Server project restored.'}}
+  renderVal&&document.getElementById('tab-ship').classList.contains('on')&&renderVal();}
+  checkBal(true);loadSurveys();checkVersion();
+ }catch(e){}}
+async function checkBal(quiet){var el=document.getElementById('balMsg'),sb=document.getElementById('sbBal');
+ if(!quiet&&el){el.textContent='checking…';el.style.color='#6e6e73'}
+ try{var r=await fetch('/proxy/'+region()+'/v1/users/me/balance',{credentials:'same-origin'});
+  if(!r.ok)throw new Error('API '+r.status);
+  var jj=await r.json(),d=jj.data||{};
+  var avail=d.available_balance!==undefined?Number(d.available_balance).toFixed(2):'--';
+  var t='\u{1F4B0} $'+avail+' available'+(d.cash_balance!==undefined?(' \u00B7 cash $'+Number(d.cash_balance).toFixed(2)):'')+(d.voucher_balance?(' \u00B7 voucher $'+Number(d.voucher_balance).toFixed(2)):'');
+  if(el){el.textContent=t;el.style.color=parseFloat(avail)<1?'#b23a2f':'#2e7d4f'}
+  if(sb){sb.textContent='\u{1F4B0} $'+avail;sb.style.color=parseFloat(avail)<1?'#d70015':''}
+ }catch(e){if(!quiet&&el){el.textContent='\u2717 '+e.message;el.style.color='#b23a2f'}if(sb&&!sb.textContent){sb.textContent='\u{1F4B0} --'}}}
+function showCreditAlert(m){var b=document.getElementById('credBanner');if(!b)return;document.getElementById('credTxt').textContent='\u26A0\uFE0F KIMI CREDITS / BILLING PROBLEM \u2014 API calls will fail until you recharge at platform.kimi.com. Details: '+(m||'insufficient balance');b.style.display='flex'}
+function dismissCredit(){var b=document.getElementById('credBanner');if(b)b.style.display='none'}
+function logout(){fetch('/api/logout',{method:'POST',credentials:'same-origin'}).finally(function(){showLogin('Signed out')})}
 
-async function logout(){
-  if(!confirm("Logout?")) return;
+
+var BLD=["Main House","Refectory","Operations Building","Garden Court","Guest House","Town House","Fellowship House","LaQ","Director's House"];
+var CATS=["Category 5","Category 5e","Category 6","Category 6A","Fiber optic","Unknown"];
+var DELIV=["Executive Summary — overall condition","Executive Summary — key findings","Executive Summary — major risks","Executive Summary — recommendations","Executive Summary — budget considerations","Building-by-building assessment (9 chapters)","Cable inventory (complete)","Photographs (organized, privacy-screened)","Telecom room evaluations","Infrastructure deficiencies documented","Risk ranking applied (likelihood × impact)","Recommended corrective actions","Cable Inventory Database (Excel, 10-col)","Room diagrams — rack elevations","Room diagrams — patch panels","Room diagrams — switches","Room diagrams — fiber terminations","Room diagrams — cable pathways","Campus dashboard delivered","Capital improvements — immediate priorities","Capital improvements — 3-year plan","Capital improvements — 5-year roadmap","Estimated replacement costs","Phase 2 positioning statement (Thinogic)"];
+var OPTS=["Cable certification","Fiber certification","New cable labeling","Patch panel reorganization","Telecom room cleanup","CAD drawing development","GIS/BIM integration"];
+var CLIENT_VER='4.2.1';
+var S={ver:0,log:[],photos:[],an:{},clusters:[],locked:false,inv:[],exec:{},deliv:{},opts:{},cert:[],chat:[],docs:{}};
+try{var L=JSON.parse(localStorage.getItem('tsv3')||'{}');for(var k in S)if(L[k]!==undefined)S[k]=L[k]}catch(e){}
+bootLoad();
+var __svT=null;
+function save(){localStorage.setItem('tsv3',JSON.stringify(S));clearTimeout(__svT);__svT=setTimeout(function(){
+ fetch('/api/state',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({S:S})}).then(function(r){if(r.status===401)showLogin()}).catch(function(){})},400)}
+function log(n){S.log.push({v:'v'+(S.ver+1),date:new Date().toLocaleString(),note:n});save()}
+function CURB(){return document.getElementById('wB').value}
+function E(){var b=CURB();S.exec[b]=S.exec[b]||{cond:'Fair',findings:'',risks:'',budget:'',obs:'',rooms:0,tot:0,na:''};return S.exec[b]}
+function pidOf(name){for(var i=0;i<S.photos.length;i++)if(S.photos[i].name===name)return S.photos[i].id;return null}
+function buildingOf(pid){for(var i=0;i<S.clusters.length;i++)if(S.clusters[i].ids.indexOf(pid)>-1)return S.clusters[i].name;return 'Unassigned'}
+function sevOf(j){var f=j.findings||[];if(f.some(function(x){return x.severity==='Severe'}))return'SEVERE';if(f.some(function(x){return x.severity==='Moderate'}))return'Moderate';return'Minor'}
+
+/* nav */
+document.querySelectorAll('#mainnav button').forEach(function(b){b.onclick=function(){
+ document.querySelectorAll('#mainnav button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+ document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});document.getElementById('tab-'+b.dataset.t).classList.add('on');
+ if(b.dataset.t==='ship')renderVal();
+ if(b.dataset.t==='work')initWork();
+ if(b.dataset.t==='chat')renderChat();
+}});
+
+/* connect */
+document.getElementById('key').value=localStorage.getItem('kkey')||'';
+document.getElementById('model').value=localStorage.getItem('kmodel')||'moonshot-v1-8k';
+function saveKey(){localStorage.setItem('kkey',document.getElementById('key').value);localStorage.setItem('kmodel',document.getElementById('model').value)}
+function region(){return document.getElementById('region').value.replace('https://','').replace('http://','')}
+function call(content,maxt,sys){return fetch('/proxy/'+region()+'/v1/chat/completions',{method:'POST',
+ headers:{'Content-Type':'application/json','X-API-Key':document.getElementById('key').value},credentials:'same-origin',
+ body:JSON.stringify({model:document.getElementById('model').value,max_tokens:maxt||2000,temperature:1,
+ messages:[{role:'system',content:sys||'You are a structured cabling assessor producing data for RFP DOIT-2026-001 (Dumbarton Oaks campus, Harvard). Reply ONLY with the requested JSON.'},{role:'user',content:content}]})})
+ .then(function(r){return r.json().then(function(j){
+   if(r.status===401){showLogin();throw new Error('Signed out — sign in again')}
+   if(!r.ok){var m=(j&&j.error&&j.error.message)||('API '+r.status);if(/balance|insufficient|quota|exceeded|credit/i.test(m))showCreditAlert(m);throw new Error(m)}
+   if(j.error){if(/balance|insufficient|quota|exceeded|credit/i.test(j.error.message||''))showCreditAlert(j.error.message);throw new Error(j.error.message||'API error')}
+   var _m=j.choices[0].message;return _m.content||_m.reasoning_content||''})})}
+function testKey(){saveKey();call([{type:'text',text:'Reply with exactly: OK'}],5,'You are a helpful assistant.').then(function(){document.getElementById('keymsg').textContent='✓ Connected';document.getElementById('keymsg').style.color='#2e7d4f'})
+ .catch(function(e){document.getElementById('keymsg').textContent='✗ '+e.message;document.getElementById('keymsg').style.color='#b23a2f'})}
+function shrink(file){return new Promise(function(res){var img=new Image();var rd=new FileReader();
+ rd.onload=function(e){img.onload=function(){var c=document.createElement('canvas');var s=Math.min(1,1100/Math.max(img.width,img.height));c.width=img.width*s;c.height=img.height*s;c.getContext('2d').drawImage(img,0,0,c.width,c.height);res(c.toDataURL('image/jpeg',0.8))};img.src=e.target.result};rd.readAsDataURL(file)})}
+
+/* ingest */
+var drop=document.getElementById('drop'),fi=document.getElementById('files');
+if(/Safari/.test(navigator.userAgent)&&!/Chrome/.test(navigator.userAgent)){heicOK=true}
+else{var hw=document.getElementById('heicWarn');if(hw)hw.innerHTML='<div class="banner" style="background:#fdf3dc;border:1px solid #f5d78e;color:#8a5a00;border-radius:10px;padding:10px 14px;margin-bottom:12px;font-size:13px">\u26A0\uFE0F This browser cannot decode iPhone HEIC photos (most of your library). For a clean run, use <b>Safari</b> — or convert to JPEG first. JPG/PNG/ZIPs work everywhere.</div>'}
+drop.onclick=function(){fi.click()};
+fi.onchange=function(){var fs=fi.files;handleList(fs);setTimeout(function(){fi.value=''},500)};
+drop.ondragover=function(e){e.preventDefault();drop.classList.add('over')};
+drop.ondragleave=function(){drop.classList.remove('over')};
+drop.ondrop=function(e){e.preventDefault();drop.classList.remove('over');handleDrop(e)};
+async function handleDrop(e){
+ var jobs=[];
+ if(e.dataTransfer.items&&e.dataTransfer.items.length){
+  for(var i=0;i<e.dataTransfer.items.length;i++){var it=e.dataTransfer.items[i];
+   if(it.kind!=='file')continue;
+   var en=(it.getAsEntry||it.webkitGetAsEntry)?(it.getAsEntry&&it.getAsEntry())||it.webkitGetAsEntry():null;
+   if(en){jobs.push(walkEntry(en,''));continue}
+   var f=it.getAsFile();if(f)jobs.push(Promise.resolve(f?[f]:[]));}
+ }
+ if(!jobs.length&&e.dataTransfer.files.length)jobs.push(Promise.resolve([...e.dataTransfer.files]));
+ var all=[];for(var j=0;j<jobs.length;j++){try{all=all.concat(await jobs[j])}catch(err){}}
+ handleList(all);
+}
+function walkEntry(en,path){
+ return new Promise(function(res){
+  if(en.isFile){en.file(function(f){f._srcPath=path+f.name;res([f])},function(){res([])})}
+  else if(en.isDirectory){var r=en.createReader();var out=[];(function read(){r.readEntries(function(es){
+   if(!es.length){res(out);return}
+   Promise.all(es.map(function(e){return walkEntry(e,path+en.name+'/')})).then(function(rs){rs.forEach(function(x){out=out.concat(x)});read()});
+  },function(){res(out)})})()}
+  else res([]);
+ });
+}
+async function handleList(fs){
+ var added=0;
+ for(var i=0;i<fs.length;i++){var f=fs[i];
+  if(/\.zip$/i.test(f.name)){
+   try{var imgs=await unzip(f);var base=f.name.replace(/\.zip$/i,'');
+    for(var k=0;k<imgs.length;k++){
+     var nf=new File([imgs[k].blob],imgs[k].name.split('/').pop(),{lastModified:imgs[k].ts,type:imgs[k].blob.type});
+     nf._srcPath=base+'/'+imgs[k].name;
+     addOne(nf);added++}
+    document.getElementById('prog1').textContent='📦 '+f.name+': scanned '+imgs._scanned+' entries, extracted '+imgs.length+' images'+(imgs.length?'':' — no jpg/png/gif/webp/heic found inside');continue}
+   catch(err){document.getElementById('prog1').textContent='⚠ Could not read '+f.name+': '+err.message;continue}
+  }
+  var ext=f.name.split('.').pop().toLowerCase();
+  if(ext==='pdf'){
+   try{
+    var t=await extractPDFText(f);
+    if(t&&t.trim().length>40){await addDocText(f.name,t);added++;document.getElementById('prog1').textContent='\u{1F4C4} '+f.name+': extracted '+t.length+' chars \u2192 analyzing';}
+    else{S.docs[f.name]={status:'error',error:'No extractable text (scanned PDF?) — paste the text into a .txt file'};save();renderFiles();added++;document.getElementById('prog1').textContent='\u{1F4C4} '+f.name+': no extractable text (scanned?)'}
+   }catch(err){S.docs[f.name]={status:'error',error:'Could not read PDF: '+err.message};save();renderFiles()}
+   continue}
+  if(['txt','md','markdown','json','csv','log'].indexOf(ext)>-1){addDoc(f);added++;continue}
+  if(f.type&&!f.type.startsWith('image'))continue;
+  addOne(f);added++;}
+ save();renderFiles();
+ document.getElementById('prog1').textContent=(added?added+' file(s) added — total '+S.photos.length+' photos / '+Object.keys(S.docs||{}).length+' docs. Hit PASS 1.':'Nothing added — supported: jpg/png/gif/webp/heic, .zip, or .txt/.md/.json/.csv');
+}
+function addOne(f){
+ var nm=(f._srcPath?f._srcPath.split('/').slice(-2).join('/'):f.name);
+ var ex=pidOf(nm)||pidOf(f.name);
+ if(ex){var ep=null;for(var i=0;i<S.photos.length;i++)if(S.photos[i].id===ex)ep=S.photos[i];
+  if(ep&&!OBJS[ep.id]){OBJS[ep.id]=f}
+  return}
+ var np={id:'p'+S.photos.length+'_'+f.name.replace(/\W/g,'').slice(0,20),name:nm,ts:f.lastModified||Date.now(),done:false,flag:null,sugg:null};
+ S.photos.push(np);OBJS[np.id]=f;
+}
+async function addDoc(f){
+ try{var text=await new Promise(function(res,rej){var r=new FileReader();r.onload=function(e){res(e.target.result)};r.onerror=rej;r.readAsText(f)});await addDocText(f.name,text)}catch(e){S.docs[f.name]={status:'error',error:e.message};save();renderFiles()}
+}
+async function addDocText(name,text){
+ S.docs[name]={status:'reading'};renderFiles();
+ try{
+  var txt=await call([{type:'text',text:'Project document for a structured cabling campus assessment (Dumbarton Oaks, RFP DOIT-2026-001, 9 buildings). Read it and return ONLY JSON: {"summary":"3-4 sentence summary of everything relevant","decisions":["key decisions or agreements made"],"building_notes":{"<BuildingName>":"facts/observations about that building"},"observations":["professional observations worth keeping"],"todo":["open items or next steps"]}. If the document is a chat export, extract decisions and facts, ignore chatter. DOCUMENT:\n\n'+String(text).slice(0,60000)}],2000,'You extract structured project context from documents. Reply ONLY with the requested JSON.');
+  var j=parseAIJSON(txt);
+  S.docs[name]={status:'done',summary:j.summary||'',decisions:j.decisions||[],building_notes:j.building_notes||{},observations:j.observations||[],todo:j.todo||[]};
+  log('Document analyzed: '+name);
+ }catch(e){S.docs[name]={status:'error',error:e.message}}
+ save();renderFiles();
+}
+function showDoc(nm){
+ var card=document.getElementById('photoDetail');card.style.display='block';
+ var d=S.docs[nm]||{};var b=document.getElementById('pdBody');
+ if(d.status==='error'){b.innerHTML='<p style="color:#b23a2f;font-weight:700">'+nm+' — failed: '+esc(d.error||'')+'</p>';return}
+ if(d.status!=='done'){b.innerHTML='<p style="color:#5b6b73">'+nm+' — processing…</p>';return}
+ var bn=Object.keys(d.building_notes||{}).map(function(k){return '<b>'+esc(k)+':</b> '+esc(d.building_notes[k])}).join('<br>');
+ b.innerHTML='<p style="font-weight:700">📝 '+esc(nm)+'</p><p style="font-size:.85rem"><b>Summary:</b> '+esc(d.summary)+'</p>'
+ +'<p style="font-size:.85rem"><b>Decisions:</b> '+(d.decisions||[]).map(esc).join(' · ')+'</p>'
+ +(bn?'<p style="font-size:.85rem"><b>Building notes:</b><br>'+bn+'</p>':'')
+ +'<p style="font-size:.85rem"><b>Observations:</b> '+(d.observations||[]).map(esc).join(' · ')+'</p>'
+ +'<p style="font-size:.85rem"><b>Open items:</b> '+(d.todo||[]).map(esc).join(' · ')+'</p>';
+}
+async function unzip(file){
+ var buf=new Uint8Array(await file.arrayBuffer());
+ var dv=new DataView(buf.buffer,buf.byteOffset,buf.byteLength);
+ var eocd=-1;
+ for(var i=buf.length-22;i>=Math.max(0,buf.length-65558);i--){
+  if(buf[i]===0x50&&buf[i+1]===0x4b&&buf[i+2]===0x05&&buf[i+3]===0x06){eocd=i;break}
+ }
+ if(eocd<0)throw new Error('not a valid zip (no central directory found)');
+ var count=dv.getUint16(eocd+10,true),cdOff=dv.getUint32(eocd+16,true);
+ var dec=new TextDecoder(),out=[],p=cdOff,scanned=0;
+ for(var n=0;n<count;n++){
+  if(p+46>buf.length||!(buf[p]===0x50&&buf[p+1]===0x4b&&buf[p+2]===0x01&&buf[p+3]===0x02))break;
+  scanned++;
+  var method=dv.getUint16(p+10,true),csize=dv.getUint32(p+20,true);
+  var nlen=dv.getUint16(p+28,true),elen=dv.getUint16(p+30,true),clen=dv.getUint16(p+32,true);
+  var lho=dv.getUint32(p+42,true);
+  var name=dec.decode(buf.slice(p+46,p+46+nlen));
+  p=p+46+nlen+elen+clen;
+  if(!/\.(jpe?g|png|gif|webp|heic)$/i.test(name)||name.indexOf('__MACOSX')>-1||csize===0)continue;
+  if(method!==8&&method!==0)continue;
+  var lnlen=dv.getUint16(lho+26,true),lelen=dv.getUint16(lho+28,true);
+  var data=buf.slice(lho+30+lnlen+lelen,lho+30+lnlen+lelen+csize);
   try{
-    await fetch("/api/logout", {method:"POST", credentials:"same-origin"});
-  }catch(e){}
-  localStorage.clear();
-  location.reload();
+   var bytes;
+   if(method===8){var ds=new DecompressionStream('deflate-raw');bytes=await new Response(new Blob([data]).stream().pipeThrough(ds)).arrayBuffer()}
+   else{bytes=data.slice().buffer}
+   var ext=name.split('.').pop().toLowerCase();
+   var mime={jpg:'image/jpeg',jpeg:'image/jpeg',png:'image/png',gif:'image/gif',webp:'image/webp',heic:'image/heic'}[ext];
+   out.push({name:name.replace(/^\.\//,''),ts:file.lastModified||Date.now(),blob:new Blob([bytes],{type:mime})});
+  }catch(err){}
+ }
+ out._scanned=scanned;
+ return out;
 }
 
-function showLoginOverlay(){
-  document.getElementById("loginOverlay").style.display = "flex";
-}
-
-function getCookie(name){
-  const v = document.cookie.split("; ").find(r => r.startsWith(name + "="));
-  return v ? v.split("=")[1] : null;
-}
-
-// ===== Rate Limit Retry Logic =====
-async function callWithRetry(fn, maxAttempts = 5, baseDelay = 500){
-  for(let i = 0; i < maxAttempts; i++){
-    try{
-      const r = await fn();
-      if(r.status === 429 || r.status >= 500){
-        if(i === maxAttempts - 1) throw new Error("Max retries exceeded (rate limited)");
-        const delay = baseDelay * Math.pow(2, i) + Math.random() * 1000;
-        await new Promise(resolve => setTimeout(resolve, delay));
-        continue;
-      }
-      return r;
-    }catch(e){
-      if(i === maxAttempts - 1) throw e;
-      const delay = baseDelay * Math.pow(2, i) + Math.random() * 1000;
-      await new Promise(resolve => setTimeout(resolve, delay));
-    }
-  }
-}
-
-// ===== Balance & Cost Guardrails =====
-async function checkBalance(){
-  try{
-    const r = await callWithRetry(() => 
-      fetch("/proxy/api.moonshot.cn/v1/users/me/balance", {
-        method:"GET",
-        headers:{"Authorization":"Bearer [PROXIED]"},
-        credentials:"same-origin"
-      }).then(x => ({status: x.status, json: () => x.json()}))
-    );
-    const data = await r.json();
-    if(data.data && data.data.available_balance){
-      balance = data.data.available_balance;
-      updateBalanceBanner();
-    }
-  }catch(e){
-    console.warn("Balance check failed:", e);
-  }
-}
-
-function updateBalanceBanner(){
-  const el = document.getElementById("balanceBanner");
-  if(!el) return;
-  if(balance === null){
-    el.innerHTML = "";
-  } else if(balance < 10){
-    el.innerHTML = `<div class="banner err">💳 Kimi balance low: $${balance.toFixed(2)}. Add credits to continue API calls.</div>`;
-  } else {
-    el.innerHTML = `<div class="banner ok">💳 Balance: $${balance.toFixed(2)}</div>`;
-  }
-}
-
-function costPreflightEstimate(photoCount){
-  // Rough: P1 = $0.01/photo, P2 = $0.02/photo, P3 = $0.01/photo
-  const est = photoCount * (0.01 + 0.02 + 0.01);
-  return est;
-}
-
-async function checkCostGuardrails(photoCount){
-  if(balance === null) return true;  // Can't check, assume ok
-  const est = costPreflightEstimate(photoCount);
-  if(est > balance){
-    if(!confirm(`Estimated cost $${est.toFixed(2)} exceeds balance $${balance.toFixed(2)}. Continue anyway?`)){
-      return false;
-    }
-  }
-  return true;
-}
-
-// ===== Version Check =====
-async function checkVersionMismatch(){
-  try{
-    const r = await fetch("/api/version").then(x => x.json());
-    const studioVer = r.studio;
-    if(studioVer && studioVer !== STUDIO_VERSION){
-      const el = document.getElementById("versionBanner");
-      if(el){
-        el.innerHTML = `<div class="banner warn">⚠️ Version mismatch: Studio v${studioVer} vs Client v${CLIENT_VERSION}. Reload to sync.</div>`;
-      }
-    }
-  }catch(e){}
-}
-
-// ===== HEIC Support Detection =====
-function detectHEICSupport(){
-  return /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent);
-}
-
-// ===== File Drop & ZIP Parsing =====
-async function parseZip(file){
-  // Central-directory parser for ZIP (handles data-descriptor zips)
-  const buf = await file.arrayBuffer();
-  const view = new Uint8Array(buf);
-  let results = [];
-  
-  // Find central directory (0x504b0102 = PK\3\4)
-  const PK = 0x504b;
-  for(let i = 0; i < view.length - 22; i++){
-    if(view[i] === 0x50 && view[i+1] === 0x4b && view[i+2] === 0x03 && view[i+3] === 0x04){
-      // Local file header
-      const nameLen = view[i+26] | (view[i+27] << 8);
-      const extraLen = view[i+28] | (view[i+29] << 8);
-      const compLen = view[i+18] | (view[i+19] << 8) | (view[i+20] << 16);
-      const method = view[i+8] | (view[i+9] << 8);
-      const fname = new TextDecoder().decode(view.slice(i+30, i+30+nameLen));
-      
-      // Skip .DS_Store and system files
-      if(fname.includes("/.") || fname.endsWith(".DS_Store")) continue;
-      
-      const isImage = /\.(jpg|jpeg|png|gif|heic|heif|bmp)$/i.test(fname);
-      const isDoc = /\.(txt|md|json|csv|pdf)$/i.test(fname);
-      
-      if(isImage || isDoc){
-        results.push({name: fname, isImage, isDoc, type: method === 0 ? "stored" : "deflated"});
-      }
-      
-      i += 30 + nameLen + extraLen + (method === 8 ? 0 : compLen);
-    }
-  }
-  
-  return results;
-}
-
-async function handleFilesDrop(files){
-  const newPhotos = [];
-  for(const f of files){
-    if(f.type.startsWith("image/")){
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        const id = "ph_" + Math.random().toString(36).slice(2, 11);
-        newPhotos.push({id, name: f.name, data: e.target.result, failed: false});
-        if(newPhotos.length === files.length) addPhotos(newPhotos);
-      };
-      reader.readAsDataURL(f);
-    } else if(f.name.endsWith(".zip")){
-      const items = await parseZip(f);
-      // Process ZIP items...
-    }
-  }
-}
-
-function addPhotos(photos){
-  S.photos.push(...photos);
-  S.an = {... S.an};  // Reset analysis per photo
-  renderFiles();
-  save();
-}
-
-// ===== Pass 1: Analyze (with retry queue) =====
-async function startPass1(){
-  if(!await checkCostGuardrails(S.photos.length)) return;
-  
-  pass1paused = false;
-  pass1queue = S.photos.map((p, i) => ({id: p.id, idx: i, retries: 0, nextRetry: 0}));
-  processPass1Queue();
-}
-
-async function processPass1Queue(){
-  while(pass1queue.length > 0 && !pass1paused){
-    const task = pass1queue[0];
-    const p = S.photos[task.idx];
-    
-    if(Date.now() < task.nextRetry){
-      await new Promise(resolve => setTimeout(resolve, task.nextRetry - Date.now()));
-    }
-    
-    try{
-      const result = await callWithRetry(() => analyzePhotoKimi(p));
-      S.an[p.id] = result;
-      S.an[p.id].done = true;  // Only mark done on success
-      pass1queue.shift();
-      renderFiles();
-      save();
-    }catch(e){
-      task.retries++;
-      if(task.retries >= 3){
-        S.an[p.id] = {failed: true, error: e.message, done: false};  // Never done on failure
-        pass1queue.shift();
-        renderFiles();
-        save();
-      } else {
-        task.nextRetry = Date.now() + (1000 * Math.pow(2, task.retries));
-        renderFiles();
-      }
-    }
-  }
-  
-  if(pass1queue.length === 0){
-    showCompletionDialog();
-  }
-}
-
-function pausePass1(){
-  pass1paused = true;
-}
-
-function resumePass1(){
-  pass1paused = false;
-  processPass1Queue();
-}
-
-function showCompletionDialog(){
-  const total = S.photos.length;
-  const analyzed = Object.values(S.an).filter(x => x.done).length;
-  const failed = Object.values(S.an).filter(x => x.failed).length;
-  
-  const modal = document.getElementById("completionModal");
-  document.getElementById("completionMsg").innerHTML = `
-    <strong>Pass 1 Complete</strong><br>
-    ${analyzed} analyzed · ${failed} failed · ${total - analyzed - failed} pending
-  `;
-  modal.classList.add("show");
-}
-
-async function analyzePhotoKimi(photo){
-  // Call Kimi vision API via server proxy
-  const b64 = photo.data.split(",")[1];
-  const payload = {
-    model: "kimi-k2.6",
-    messages: [
-      {role: "user", content: [
-        {type: "image_url", image_url: {url: `data:image/jpeg;base64,${b64}`}},
-        {type: "text", text: "Analyze this infrastructure photo. Return JSON only: {room, location, labels_read: [{text, where}], faces_visible: bool, condition: 'good'|'fair'|'poor', notes}"}
-      ]}
-    ],
-    temperature: 1,
-    max_tokens: 2000
-  };
-  
-  const resp = await callWithRetry(() =>
-    fetch("/proxy/api.moonshot.cn/v1/chat/completions", {
-      method: "POST",
-      headers: {"Content-Type": "application/json"},
-      credentials: "same-origin",
-      body: JSON.stringify(payload)
-    }).then(x => ({status: x.status, json: () => x.json()}))
-  );
-  
-  const data = await resp.json();
-  if(data.error) throw new Error(data.error.message);
-  
-  const content = data.choices[0].message.content || data.choices[0].message.reasoning_content || "";
-  const jsonMatch = content.match(/\{[\s\S]*\}/);
-  if(!jsonMatch) throw new Error("No JSON in response");
-  
-  return JSON.parse(jsonMatch[0]);
-}
-
-// ===== UI Rendering =====
 function renderFiles(){
-  const stats = {
-    photos: S.photos.length,
-    analyzed: Object.values(S.an).filter(x => x.done).length,
-    failed: Object.values(S.an).filter(x => x.failed).length
-  };
-  
-  const html = S.photos.map(p => {
-    const a = S.an[p.id] || {};
-    const status = a.failed ? "❌" : a.done ? "✓" : "…";
-    const retry = a.failed ? `<button onclick="retryPhoto('${p.id}')" class="btn sec" style="font-size:.75rem;padding:4px 8px">Retry</button>` : "";
-    return `<div style="display:flex;gap:8px;padding:8px;border:1px solid var(--border2);border-radius:var(--r-md);align-items:center">
-      <img src="${p.data}" style="width:48px;height:48px;object-fit:cover;border-radius:var(--r-sm)">
-      <div style="flex:1">
-        <div style="font-weight:600">${status} ${p.name}</div>
-        ${a.room ? `<div style="font-size:.75rem;color:var(--text2)">${a.room}</div>` : ""}
-      </div>
-      ${retry}
-    </div>`;
-  }).join("");
-  
-  const el = document.getElementById("filesList");
-  if(el) el.innerHTML = html || "<p class='small'>📸 Drop images/folders/ZIPs</p>";
-  
-  const statsEl = document.getElementById("ingestStats");
-  if(statsEl) statsEl.textContent = `📸 ${stats.photos} · ${stats.analyzed} analyzed · ${stats.failed} failed`;
+ var el=document.getElementById('filelist');el.innerHTML='';
+ if(!S.photos.length){el.innerHTML='<p style="font-size:.85rem;color:#5b6b73">No photos yet.</p>';return}
+ var _ok=0,_fl=0;S.photos.forEach(function(p){if(!p.done)return;var a=S.an[p.id];if(a&&a.error)_fl++;else _ok++});el.innerHTML='<p style="font-weight:700;font-size:.85rem">\u{1F4F8} '+S.photos.length+' photos \u00B7 <span style="color:#2e7d4f">'+_ok+' analyzed</span> \u00B7 <span style="color:#d70015">'+_fl+' failed</span> \u00B7 \u{1F4C4} '+Object.keys(S.docs||{}).length+' docs \u2014 click any item to inspect</p>';var rb=document.getElementById('reanBtn');if(rb){rb.style.display=_fl?'inline-flex':'none';rb.innerHTML='\u21bb Re-analyze '+_fl+' failed'}
+ S.photos.forEach(function(p){var d=document.createElement('span');
+  var _a=S.an[p.id],_fd=p.done&&_a&&_a.error;d.style.cssText='display:inline-block;margin:3px;padding:3px 9px;border-radius:99px;font-size:.72rem;border:1px solid '+(_fd?'#d70015':p.done?'#2e7d4f':'#d7dee1')+';cursor:pointer;'+(_fd?'background:#ffe9e7':p.done?'background:#e9f5ee':'background:#fff');
+  d.textContent=p.name+' · '+new Date(p.ts).toLocaleString();d.title='Click to inspect';
+  d.onclick=function(){inspectPhoto(p.id)};el.appendChild(d)});
+ Object.keys(S.docs||{}).forEach(function(nm){var dc=S.docs[nm];
+  var c=document.createElement('span');c.style.cssText='display:inline-block;margin:3px;padding:4px 10px;border-radius:99px;font-size:12px;border:1px solid #c7d2fe;cursor:pointer;background:#eef2ff;color:#3730a3';
+  c.textContent='📝 '+nm+(dc.status==='error'?' ⚠':dc.status!=='done'?' …':' ✓');c.title='Click to read extracted context';
+  c.onclick=function(){showDoc(nm)};el.appendChild(c)});}
+function inspectPhoto(pid){
+ var p=null;S.photos.forEach(function(x){if(x.id===pid)p=x});
+ var card=document.getElementById('photoDetail');card.style.display='block';
+ var body=document.getElementById('pdBody');
+ if(!S.an[pid]){body.innerHTML='<p style="font-size:.85rem;color:#5b6b73">Not analyzed yet.</p>';return}
+ var j=S.an[pid];
+ body.innerHTML='<p style="font-weight:700">'+p.name+' → <span style="color:#1d5c6e">'+buildingOf(pid)+'</span> · '+new Date(p.ts).toLocaleString()+(j.faces?'</p><p><span class="badge b-SEV">PRIVACY: faces visible — thumbnail withheld from export</span>':'')+
+ '<p style="font-size:.85rem"><b>Room:</b> '+(j.room||'—')+' · <b>Condition:</b> '+JSON.stringify(j.condition||{})+'</p>'+
+ '<p style="font-size:.85rem"><b>Labels read:</b> '+((j.labels_read||[]).map(function(l){return l.text}).join(', ')||'none legible')+'</p>'+
+ '<p style="font-size:.85rem"><b>Summary:</b> '+(j.summary||'')+'</p>'+
+ '<p style="font-size:.85rem"><b>Findings:</b> '+((j.findings||[]).map(function(f){return '['+f.severity+'/'+f.likelihood+'-'+f.impact+'] '+f.type+': '+f.description}).join('<br>')||'none')+'</p>';
+}
+var P1="Analyze this photo from a structured cabling site walk (Dumbarton Oaks campus, Harvard; buildings: Main House, Refectory, Operations Building, Garden Court, Guest House, Town House, Fellowship House, LaQ, Director's House). Capture EVERYTHING, no summarizing. Return ONLY JSON:\n{\"room\":\"specific room/area guess\",\"area_served\":\"what this space serves if evident\",\"equipment\":[\"racks,switches,UPS,patch panels...with details\"],\"labels_read\":[{\"text\":\"exact label text\",\"where\":\"e.g., patch panel top-left\"}],\"cable_categories\":{\"Category 5\":n,\"Category 5e\":n,\"Category 6\":n,\"Category 6A\":n,\"Fiber optic\":n,\"Unknown\":n},\"faceplates\":n,\"jacks_visible\":n,\"drop_estimate\":\"reasoning-based estimate w/ basis\",\"condition\":{\"rack\":\"Good|Fair|Poor|Critical\",\"cabling\":\"...\",\"labeling\":\"...\",\"pathways\":\"...\",\"environment\":\"...\",\"grounding\":\"...\"},\"findings\":[{\"type\":\"e.g. Abandoned cabling|Damaged cabling|Unsupported bundles|Improper terminations|Labeling deficiencies|Non-standard install|Capacity limitations\",\"severity\":\"Minor|Moderate|Severe\",\"likelihood\":\"Low|Medium|High\",\"impact\":\"Low|Medium|High\",\"description\":\"specific with location in photo\"}],\"standards_issues\":[{\"standard\":\"TIA-568|TIA-569|TIA-606|TIA-607|BICSI\",\"issue\":\"what's wrong\",\"gap\":\"what compliance requires\"}],\"summary\":\"2-3 detailed professional sentences\",\"recommended\":\"one capital-planning sentence\",\"bom_suggestions\":[{\"item\":\"e.g. Cat6A patch panel 24-port\",\"qty\":n,\"unit\":\"ea\",\"rom_each\":number}],\"faces_visible\":true|false,\"confidence\":\"High|Medium|Low\"}\nRules: count only what's reasonably visible; use 'approx' in descriptions when estimating; never invent label text — if illegible, leave labels_read empty.";
+async function callWithRetry(content,maxt){var last=null;for(var a=0;a<5;a++){try{return await call(content,maxt)}catch(e){last=e;if(!/429|rate|timeout|502|503|temporar/i.test(e.message))throw e;await new Promise(function(r){setTimeout(r,2500*(a+1))})}}throw last}
+function resetFailed(){var n=0;S.photos.forEach(function(p){var a=S.an[p.id];if(a&&a.error){p.done=false;n++}});save();renderFiles();
+ document.getElementById('prog1').textContent='\u21bb Reset '+n+' failed photos \u2014 re-analyzing now (8 at a time). Keep this tab open.';
+ if(n)pass1()}
+async function pass1(){
+ saveKey();var pool=S.photos.filter(function(p){return !p.done});
+ if(!pool.length){alert('No new photos. Drop more or use Pass 2.');return}
+ var go=document.getElementById('go1');go.disabled=true;var ok=0,fail=0,total=pool.length,CONC=8;
+ document.getElementById('prog1').textContent='🔍 Starting '+total+' photos, '+CONC+' at a time…';
+ async function worker(){
+  while(pool.length){
+   var p=pool.shift();
+   try{
+    var b64=await shrinkFromCache(p);
+    var txt=await callWithRetry([{type:'text',text:P1},{type:'image_url',image_url:{url:b64}}]);
+    var j=parseAIJSON(txt);
+    S.an[p.id]=j;p.done=true;ok++;
+   }catch(e){
+    S.an[p.id]={error:e.message,summary:'ANALYSIS FAILED: '+e.message,findings:[],labels_read:[],equipment:[],standards_issues:[],bom_suggestions:[],cable_categories:{},faces_visible:false,confidence:'Low'};
+    fail++;
+   }
+   document.getElementById('prog1').textContent='🔍 '+p.name+' — '+(ok+fail)+'/'+total+' done ('+ok+' ok, '+fail+' failed)';
+   document.getElementById('bar1').style.width=Math.round((ok+fail)/total*100)+'%';
+   save();renderFiles();
+  }
+ }
+ var workers=[];for(var w=0;w<CONC;w++)workers.push(worker());
+ await Promise.all(workers);
+ document.getElementById('bar1').style.width='100%';
+ document.getElementById('prog1').textContent='\u2713 Pass 1 complete: '+ok+' ok / '+fail+' failed — go to step 3 for Pass 2';
+ document.getElementById('go2').disabled=false;
+ checkBal(true);log('Pass 1 analyzed '+ok+' photos ('+fail+' failed)');
+}
+function renderFiles(){
+ var el=document.getElementById('filelist');el.innerHTML='';
+ if(!S.photos.length){el.innerHTML='<p style="font-size:.85rem;color:#5b6b73">No photos yet.</p>';return}
+ var _ok=0,_fl=0;S.photos.forEach(function(p){if(!p.done)return;var a=S.an[p.id];if(a&&a.error)_fl++;else _ok++});el.innerHTML='<p style="font-weight:700;font-size:.85rem">\u{1F4F8} '+S.photos.length+' photos \u00B7 <span style="color:#2e7d4f">'+_ok+' analyzed</span> \u00B7 <span style="color:#d70015">'+_fl+' failed</span> \u00B7 \u{1F4C4} '+Object.keys(S.docs||{}).length+' docs \u2014 click any item to inspect</p>';var rb=document.getElementById('reanBtn');if(rb){rb.style.display=_fl?'inline-flex':'none';rb.innerHTML='\u21bb Re-analyze '+_fl+' failed'}
+ S.photos.forEach(function(p){var d=document.createElement('span');
+  var _a=S.an[p.id],_fd=p.done&&_a&&_a.error;d.style.cssText='display:inline-block;margin:3px;padding:3px 9px;border-radius:99px;font-size:.72rem;border:1px solid '+(_fd?'#d70015':p.done?'#2e7d4f':'#d7dee1')+';cursor:pointer;'+(_fd?'background:#ffe9e7':p.done?'background:#e9f5ee':'background:#fff');
+  d.textContent=p.name+' · '+new Date(p.ts).toLocaleString();d.title='Click to inspect';
+  d.onclick=function(){inspectPhoto(p.id)};el.appendChild(d)});
+ Object.keys(S.docs||{}).forEach(function(nm){var dc=S.docs[nm];
+  var c=document.createElement('span');c.style.cssText='display:inline-block;margin:3px;padding:4px 10px;border-radius:99px;font-size:12px;border:1px solid #c7d2fe;cursor:pointer;background:#eef2ff;color:#3730a3';
+  c.textContent='📝 '+nm+(dc.status==='error'?' ⚠':dc.status!=='done'?' …':' ✓');c.title='Click to read extracted context';
+  c.onclick=function(){showDoc(nm)};el.appendChild(c)});}
+function inspectPhoto(pid){
+ var p=null;S.photos.forEach(function(x){if(x.id===pid)p=x});
+ var card=document.getElementById('photoDetail');card.style.display='block';
+ var body=document.getElementById('pdBody');
+ if(!S.an[pid]){body.innerHTML='<p style="font-size:.85rem;color:#5b6b73">Not analyzed yet.</p>';return}
+ var j=S.an[pid];
+ body.innerHTML='<p style="font-weight:700">'+p.name+' → <span style="color:#1d5c6e">'+buildingOf(pid)+'</span> · '+new Date(p.ts).toLocaleString()+(j.faces?'</p><p><span class="badge b-SEV">PRIVACY: faces visible — thumbnail withheld from export</span>':'')+
+ '<p style="font-size:.85rem"><b>Room:</b> '+(j.room||'—')+' · <b>Condition:</b> '+JSON.stringify(j.condition||{})+'</p>'+
+ '<p style="font-size:.85rem"><b>Labels read:</b> '+((j.labels_read||[]).map(function(l){return l.text}).join(', ')||'none legible')+'</p>'+
+ '<p style="font-size:.85rem"><b>Summary:</b> '+(j.summary||'')+'</p>'+
+ '<p style="font-size:.85rem"><b>Findings:</b> '+((j.findings||[]).map(function(f){return '['+f.severity+'/'+f.likelihood+'-'+f.impact+'] '+f.type+': '+f.description}).join('<br>')||'none')+'</p>';
+}
+var P1="Analyze this photo from a structured cabling site walk (Dumbarton Oaks campus, Harvard; buildings: Main House, Refectory, Operations Building, Garden Court, Guest House, Town House, Fellowship House, LaQ, Director's House). Capture EVERYTHING, no summarizing. Return ONLY JSON:\n{\"room\":\"specific room/area guess\",\"area_served\":\"what this space serves if evident\",\"equipment\":[\"racks,switches,UPS,patch panels...with details\"],\"labels_read\":[{\"text\":\"exact label text\",\"where\":\"e.g., patch panel top-left\"}],\"cable_categories\":{\"Category 5\":n,\"Category 5e\":n,\"Category 6\":n,\"Category 6A\":n,\"Fiber optic\":n,\"Unknown\":n},\"faceplates\":n,\"jacks_visible\":n,\"drop_estimate\":\"reasoning-based estimate w/ basis\",\"condition\":{\"rack\":\"Good|Fair|Poor|Critical\",\"cabling\":\"...\",\"labeling\":\"...\",\"pathways\":\"...\",\"environment\":\"...\",\"grounding\":\"...\"},\"findings\":[{\"type\":\"e.g. Abandoned cabling|Damaged cabling|Unsupported bundles|Improper terminations|Labeling deficiencies|Non-standard install|Capacity limitations\",\"severity\":\"Minor|Moderate|Severe\",\"likelihood\":\"Low|Medium|High\",\"impact\":\"Low|Medium|High\",\"description\":\"specific with location in photo\"}],\"standards_issues\":[{\"standard\":\"TIA-568|TIA-569|TIA-606|TIA-607|BICSI\",\"issue\":\"what's wrong\",\"gap\":\"what compliance requires\"}],\"summary\":\"2-3 detailed professional sentences\",\"recommended\":\"one capital-planning sentence\",\"bom_suggestions\":[{\"item\":\"e.g. Cat6A patch panel 24-port\",\"qty\":n,\"unit\":\"ea\",\"rom_each\":number}],\"faces_visible\":true|false,\"confidence\":\"High|Medium|Low\"}\nRules: count only what's reasonably visible; use 'approx' in descriptions when estimating; never invent label text — if illegible, leave labels_read empty.";
+async function pass1(){
+ saveKey();var todo=S.photos.filter(function(p){return !p.done});
+ if(!todo.length){alert('No new photos. Drop more or use Pass 2.');return}
+ var go=document.getElementById('go1');go.disabled=true;var ok=0;
+ for(var i=0;i<todo.length;i++){
+  document.getElementById('prog1').textContent='🔍 '+todo[i].name+' ('+(i+1)+'/'+todo.length+')';
+  document.getElementById('bar1').style.width=Math.round(i/todo.length*100)+'%';
+  try{var b64=await shrinkFromCache(todo[i]);
+   var txt=await call([{type:'text',text:P1},{type:'image_url',image_url:{url:b64}}]);
+   var j=JSON.parse(txt.replace(/```json|```/g,'').trim());
+   S.an[todo[i].id]=j;todo[i].done=true;ok++;
+  }catch(e){S.an[todo[i].id]={error:e.message,summary:'ANALYSIS FAILED: '+e.message,findings:[],labels_read:[],equipment:[],standards_issues:[],bom_suggestions:[],cable_categories:{},faces_visible:false};todo[i].done=true}
+  save();renderFiles();
+ }
+ document.getElementById('bar1').style.width='100%';
+ document.getElementById('prog1').textContent='✓ Pass 1 complete: '+ok+'/'+todo.length+' analyzed. Go to tab 3 for Pass 2.';
+ checkBal(true);
+ document.getElementById('go2').disabled=false;
+ log('Pass 1 analyzed '+ok+' photos');
+}
+var OBJS={};
+async function shrinkFromCache(p){
+ if(!OBJS[p.id])throw new Error('original file not in memory — re-drop this photo');
+ return shrink(OBJS[p.id]);
 }
 
-function gotoStep(n){
-  SHOW = n;
-  document.querySelectorAll("#mainnav button").forEach((b, i) => {
-    b.classList.toggle("on", i+1 === SHOW);
-  });
-  document.querySelectorAll("main > .card").forEach((c, i) => {
-    c.style.display = (i < 6 && SHOW === i+1) || i >= 6 ? "block" : "none";
-  });
-}
+/* ---- PASS 2 & 3 ---- */
 
-// ===== Save/Load =====
-function save(){
-  localStorage.setItem("surveyState", JSON.stringify(S));
-  const payload = {S};
-  fetch("/api/state", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    credentials: "same-origin",
-    body: JSON.stringify(payload)
-  }).catch(e => console.warn("Save failed:", e));
+function compact(p){var j=S.an[p.id]||{};return {id:p.id,name:p.name,time:new Date(p.ts).toLocaleString(),
+ room:j.room||'',equip:(j.equipment||[]).join('; ').slice(0,200),labels:((j.labels_read||[]).map(function(l){return l.text})).join('; ').slice(0,200),summary:(j.summary||'').slice(0,250)}}
+async function pass2(){
+ saveKey();var done=S.photos.filter(function(p){return p.done});
+ if(!done.length){alert('Run Pass 1 first');return}
+ var go=document.getElementById('go2');go.disabled=true;
+ document.getElementById('prog2').textContent='Pass 2: grouping '+done.length+' photos by timestamp gaps, rack labels, and visual context…';
+ try{
+  var txt=await call([{type:'text',text:'Group these photos into site visits/buildings for a cabling assessment. Signals: (1) timestamps — photos close in time were shot at the same site; big time gaps mean the tech moved buildings; (2) rack/panel label prefixes and room names; (3) equipment continuity. Buildings on this campus: Main House, Refectory, Operations Building, Garden Court, Guest House, Town House, Fellowship House, LaQ, Director\'s House. If a label prefix clearly maps to a building use it. Return ONLY JSON: {"clusters":[{"name":"building name or descriptive label","ids":["photoId",...],"confidence":"High|Medium|Low","reasoning":"one sentence"}],"unassigned":["photoId",...]}. Every photo id must appear exactly once.'},{type:'text',text:'PHOTOS:\n'+JSON.stringify(done.map(compact))}],4500);
+  var j=parseAIJSON(txt);
+  S.clusters=(j.clusters||[]).map(function(c){return {name:c.name,ids:c.ids,conf:c.confidence||'Medium',reason:c.reasoning||'',locked:false}});
+  if(j.unassigned&&j.unassigned.length)S.clusters.push({name:'Unassigned / Review',ids:j.unassigned,conf:'Low',reason:'no strong grouping signal',locked:false});
+  S.photos.forEach(function(p){p.flag=null;p.sugg=null});
+  save();renderClusters();
+  document.getElementById('prog2').textContent='✓ Pass 2 done — '+S.clusters.length+' groups proposed. Review below, then run Pass 3.';
+  document.getElementById('go3').disabled=false;
+  log('Pass 2 proposed '+S.clusters.length+' groups');
+ }catch(e){document.getElementById('prog2').textContent='⚠ Pass 2 failed: '+e.message}
+ go.disabled=false;
 }
-
-async function loadState(){
+async function pass3(){
+ saveKey();var go=document.getElementById('go3');go.disabled=true;
+ for(var ci=0;ci<S.clusters.length;ci++){
+  var c=S.clusters[ci];if(c.name==='Unassigned / Review')continue;
+  document.getElementById('prog2').textContent='Pass 3: verifying "'+c.name+'" ('+(ci+1)+'/'+S.clusters.length+')…';
+  document.getElementById('bar2').style.width=Math.round(ci/S.clusters.length*100)+'%';
   try{
-    const r = await fetch("/api/state", {credentials: "same-origin"}).then(x => x.json());
-    if(r.S) S = r.S;
-    renderFiles();
-    checkVersionMismatch();
-    checkBalance();
-  }catch(e){
-    const cached = localStorage.getItem("surveyState");
-    if(cached) S = JSON.parse(cached);
-  }
+   var members=c.ids.map(function(id){var p=S.photos.filter(function(x){return x.id===id})[0];return p?compact(p):null}).filter(Boolean);
+   var txt=await call([{type:'text',text:'Cluster "'+c.name+'" claims these photos belong to the same building/site. Verify EACH photo. Return ONLY JSON: {"keep":["photoId",...],"move":[{"id":"photoId","better_cluster":"name of the cluster it fits better, or \'different site\'","why":"short reason"}]}. Be strict: rack labels, room type, and equipment must be consistent.'},{type:'text',text:'CLUSTER "'+c.name+'":\n'+JSON.stringify(members)}],3000);
+   var j=parseAIJSON(txt);
+   (j.move||[]).forEach(function(m){var p=S.photos.filter(function(x){return x.id===m.id})[0];if(p){p.flag='stray';p.sugg=m.better_cluster+' — '+m.why}});
+  }catch(e){}
+  save();renderClusters();
+ }
+ document.getElementById('bar2').style.width='100%';
+ document.getElementById('prog2').textContent='✓ Pass 3 complete. Review red-flagged photos and move them, then LOCK.';
+ log('Pass 3 verification run');
+ go.disabled=false;
+}
+function renderClusters(){
+ var el=document.getElementById('clusters');el.innerHTML='';
+ S.clusters.forEach(function(c,ci){
+  var div=document.createElement('div');div.className='cluster';
+  var opts=BLD.concat(['Unknown / Review']).map(function(b){return '<option'+(b===c.name?' selected':'')+'>'+b+'</option>'}).join('');
+  div.innerHTML='<div class="cl-head"><b>Group '+(ci+1)+'</b><select style="max-width:220px" onchange="S.clusters['+ci+'].name=this.value;save()">'+opts+'</select>'+
+  '<span class="badge '+(c.conf==='High'?'b-MIN':c.conf==='Medium'?'b-MOD':'b-SEV')+'">'+c.conf+' confidence</span>'+
+  '<span style="font-size:.75rem;color:#5b6b73;flex:1">'+c.reason+'</span><b style="font-size:.8rem">'+c.ids.length+' photos</b></div><div class="cl-thumbs"></div>';
+  var th=div.querySelector('.cl-thumbs');
+  c.ids.forEach(function(pid){
+   var p=S.photos.filter(function(x){return x.id===pid})[0];if(!p)return;
+   var w=document.createElement('div');w.className='pwrap'+(p.flag?' flag':'');
+   w.innerHTML='<img id="img_'+pid+'"><div>'+p.name.slice(0,26)+'<br>'+new Date(p.ts).toLocaleTimeString()+(p.flag?'<br><span style="color:#b23a2f;font-weight:700">⚠ STRAY — '+p.sugg+'</span>':'')+'</div>';
+   th.appendChild(w);
+   var img=w.querySelector('img');img.onclick=function(){inspectPhoto(pid)};
+   if(OBJS[pid]){var r=new FileReader();r.onload=(function(el){return function(e){el.src=e.target.result}})(img);r.readAsDataURL(OBJS[pid])}
+   else{img.src='';img.alt='(original not in memory — photo still analyzed & exported)'}
+   if(p.flag){var mv=document.createElement('select');mv.style.cssText='font-size:.65rem;margin-top:2px';
+    mv.innerHTML='<option>move to…</option>'+S.clusters.map(function(cc,ii){return '<option value="'+ii+'">'+cc.name+'</option>'}).join('');
+    mv.onchange=function(){if(mv.value==='')return;var ti=+mv.value;
+     S.clusters[ci].ids=S.clusters[ci].ids.filter(function(x){return x!==pid});
+     S.clusters[ti].ids.push(pid);p.flag=null;p.sugg=null;save();renderClusters()};
+    w.appendChild(mv);}
+  });
+  el.appendChild(div);
+ });
+ if(S.clusters.length)document.getElementById('lockCard').style.display='block';
+}
+function lockClusters(){
+ var named=S.clusters.filter(function(c){return c.ids.length});
+ if(!named.length){alert('No groups to lock');return}
+ S.clusters.forEach(function(c){c.locked=true});S.locked=true;save();
+ var wb=document.getElementById('wB');wb.innerHTML=BLD.map(function(b){
+  var has=S.clusters.some(function(c){return c.name===b&&c.ids.length});return '<option'+(has?'':' disabled')+'>'+b+'</option>'}).join('');
+ var cb=document.getElementById('chatB');cb.innerHTML='<option value="">— campus-wide —</option>'+BLD.map(function(b){return '<option>'+b+'</option>'}).join('');
+ document.getElementById('lockmsg').textContent='✓ Locked. Building workspace is live.';
+ log('Locked building mapping: '+named.map(function(c){return c.name+'('+c.ids.length+')'}).join(', '));
+ alert('Mapping locked. Tabs 4, 5 and 6 are now fully active.');
 }
 
-// ===== Init =====
-window.onload = () => {
-  heicSupport = detectHEICSupport();
-  if(!heicSupport){
-    const banner = document.getElementById("heicBanner");
-    if(banner) banner.innerHTML = `<div class="banner warn">⚠️ HEIC photos not supported in this browser. Use Safari or pre-convert to JPEG.</div>`;
-  }
-  checkAuth();
-};
-</script>
-</head><body>
-<div id="loginOverlay" class="login-overlay">
-  <div class="login-card">
-    <h2 style="margin-bottom:20px">Thinogic Survey Studio</h2>
-    <label>Username</label>
-    <input id="loginU" type="text" placeholder="jerry">
-    <label style="margin-top:16px">Password</label>
-    <input id="loginP" type="password" placeholder="">
-    <button class="btn" onclick="login()" style="width:100%;margin-top:24px">Login</button>
-    <p style="text-align:center;margin-top:12px;font-size:.8rem;color:var(--text2)">v4.2.0</p>
-  </div>
-</div>
+/* ---- WORKSPACE ---- */
+var workInit=false;
+function initWork(){
+ if(!S.clusters.length){document.getElementById('tab-work').querySelector('.card').insertAdjacentHTML('afterbegin','<p style="color:#b23a2f;font-weight:700">Finish tabs 2–3 first (analyze, cluster, lock).</p>');return}
+ if(workInit){renderW();return}
+ workInit=true;
+ renderW();renderDeliv();renderOpts();renderCert();
+}
+function photosOfB(b){var ids=[];S.clusters.forEach(function(c){if(c.name===b)ids=ids.concat(c.ids)});return ids}
+function renderW(){
+ var b=CURB();var e=E();
+ document.getElementById('wCond').value=e.cond;document.getElementById('wFind').value=e.findings;
+ document.getElementById('wRisk').value=e.risks;document.getElementById('wBud').value=e.budget;
+ document.getElementById('wObs').value=e.obs;document.getElementById('wRooms').value=e.rooms||'';
+ document.getElementById('wTot').value=e.tot||'';document.getElementById('wNA').value=e.na||'';
+ var ids=photosOfB(b);
+ var extra=document.getElementById('wExtra');
+ var an=ids.map(function(id){return S.an[id]}).filter(function(j){return j&&!j.error});
+ var cats={};CATS.forEach(function(k){cats[k]=0});an.forEach(function(j){var c=j.cable_categories||{};CATS.forEach(function(k){cats[k]+=c[k]||0})});
+ var labels=[];an.forEach(function(j){(j.labels_read||[]).forEach(function(l){if(labels.indexOf(l.text)<0)labels.push(l.text)})});
+ var rooms=new Set();an.forEach(function(j){if(j.room)rooms.add(j.room)});
+ extra.innerHTML='<h2 style="margin-top:14px">Live rollup — '+b+' ('+ids.length+' photos)</h2>'+
+ '<p style="font-size:.85rem"><b>Distinct rooms seen:</b> '+rooms.size+(rooms.size?' ('+[...rooms].slice(0,6).join('; ')+')':'')+' · <b>Labels read:</b> '+(labels.slice(0,10).join(', ')||'none legible')+'</p>'+
+ '<p style="font-size:.85rem"><b>Categories:</b> '+CATS.map(function(k){return k.replace('Category ','Cat').replace(' optic','')+': '+cats[k]}).join(' · ')+'</p>'+
+ (e.rooms&&!e.tot?'':'<p style="font-size:.8rem;color:#8a6d1a">💡 Tip: fill coverage numbers above — reviewers check them.</p>');
+}
+function renderDeliv(){var d=document.getElementById('delivList');d.innerHTML='';
+ DELIV.forEach(function(t,i){S.deliv[i]=S.deliv[i]||'Pending';
+  d.innerHTML+='<div class="check"><span class="nm">'+t+'</span><select onchange="S.deliv['+i+']=this.value;save()">'+['Pending','In progress','Complete','N/A'].map(function(s){return '<option'+(s===S.deliv[i]?' selected':'')+'>'+s+'</option>'}).join('')+'</select></div>'})}
+function renderOpts(){var o=document.getElementById('optList');o.innerHTML='';
+ OPTS.forEach(function(t,i){S.opts[i]=S.opts[i]||{p:'',n:''};
+  o.innerHTML+='<div class="check"><span class="nm" style="flex:1">'+t+'</span><input type="number" placeholder="$" value="'+S.opts[i].p+'" oninput="S.opts['+i+'].p=this.value;save()"><input placeholder="basis" style="flex:2;min-width:110px" value="'+S.opts[i].n+'" oninput="S.opts['+i+'].n=this.value;save()"></div>'})}
+function addCert(){S.cert.push({b:CURB(),id:'',std:'TIA-568',res:'',date:'',tech:''});save();renderCert()}
+function renderCert(){var tb=document.getElementById('certBody');tb.innerHTML='';
+ S.cert.forEach(function(r,i){var tr=document.createElement('tr');
+  tr.innerHTML='<td><input value="'+r.b+'" oninput="S.cert['+i+'].b=this.value;save()"></td><td><input value="'+r.id+'" oninput="S.cert['+i+'].id=this.value;save()"></td><td><input value="'+r.std+'" oninput="S.cert['+i+'].std=this.value;save()"></td><td><input value="'+r.res+'" oninput="S.cert['+i+'].res=this.value;save()"></td><td><input value="'+r.date+'" oninput="S.cert['+i+'].date=this.value;save()"></td><td><input value="'+r.tech+'" oninput="S.cert['+i+'].tech=this.value;save()"></td>';
+  tb.appendChild(tr)});}
 
-<div class="app">
-  <aside>
-    <div class="brand">
-      <div class="logo">🔧</div>
-      <div class="bt">
-        <b>Thinogic</b>
-        <span>Survey v4.2</span>
-      </div>
-    </div>
-    <nav id="mainnav">
-      <button class="on" onclick="gotoStep(1)"><div class="n">1</div> Connect</button>
-      <button onclick="gotoStep(2)"><div class="n">2</div> Ingest</button>
-      <button onclick="gotoStep(3)"><div class="n">3</div> Cluster</button>
-      <button onclick="gotoStep(4)"><div class="n">4</div> Buildings</button>
-      <button onclick="gotoStep(5)"><div class="n">5</div> Ask Kimi</button>
-      <button onclick="gotoStep(6)"><div class="n">6</div> Publish</button>
-    </nav>
-    <div class="side-foot">
-      <div style="margin-bottom:8px">User: <strong>${currentUser || "—"}</strong></div>
-      <button onclick="logout()">Logout</button>
-    </div>
-  </aside>
+/* ---- CHAT ---- */
+function projectDigest(){
+ var lines=['PROJECT: Dumbarton Oaks campus cabling assessment, RFP DOIT-2026-001 (Harvard). You are assisting Jerry, Thinogic\'s lead field tech. Be specific, professional, proposal-quality.'];
+ BLD.forEach(function(b){var ids=photosOfB(b);if(!ids.length)return;var an=ids.map(function(id){return S.an[id]}).filter(function(j){return j&&!j.error});
+  var cats={};CATS.forEach(function(k){cats[k]=0});an.forEach(function(j){var c=j.cable_categories||{};CATS.forEach(function(k){cats[k]+=c[k]||0})});
+  var top=(an.map(function(j){return j.findings||[]}).reduce(function(a,f){return a.concat(f)},[])).sort(function(a,b){return (a.severity==='Severe'?0:1)-(b.severity==='Severe'?0:1)}).slice(0,3);
+  lines.push(b+': '+ids.length+' photos · cats '+JSON.stringify(cats)+' · top findings: '+top.map(function(f){return f.severity+' '+f.type}).join('; ')+' · exec condition: '+(S.exec[b]?S.exec[b].cond:'n/a'))});
+ var dks=Object.keys(S.docs||{});
+ if(dks.length){lines.push('PROJECT DOCUMENTS (from chat exports & notes):');dks.forEach(function(nm){var d=S.docs[nm];if(d.status==='done')lines.push('['+nm+'] '+d.summary+' Decisions: '+(d.decisions||[]).join('; ')+' Building notes: '+JSON.stringify(d.building_notes||{}))})}
+ return lines.join('\n');
+}
+function renderChat(){var box=document.getElementById('chatBox');box.innerHTML='';
+ if(!S.chat.length){box.innerHTML='<p style="font-size:.82rem;color:#5b6b73">Ask anything — budget language, risk summaries, a recommendation, wording for the proposal. Answers are project-aware. “＋ Add to survey” puts the answer into the building\'s observations.</p>'}
+ S.chat.forEach(function(m,i){
+  var d=document.createElement('div');d.className='msg '+m.role;d.textContent=m.text;box.appendChild(d);
+  if(m.role==='ai'){var btn=document.createElement('button');btn.className='btn sec';btn.style.cssText='padding:3px 10px;font-size:.72rem';
+   btn.textContent='＋ Add to survey';
+   btn.onclick=function(){var b=document.getElementById('chatB').value||CURB();var e2=S.exec[b]=S.exec[b]||{cond:'Fair',findings:'',risks:'',budget:'',obs:''};
+    e2.obs=(e2.obs?e2.obs+'\n\n':'')+'[Kimi, '+new Date().toLocaleDateString()+'] '+m.text;save();log('Chat answer added to '+b);btn.textContent='✓ Added';btn.disabled=true;
+    if(b===CURB())document.getElementById('wObs').value=e2.obs};
+   box.appendChild(btn)}
+  });
+ box.scrollTop=box.scrollHeight;}
+async function chatSend(){
+ var t=document.getElementById('chatIn').value.trim();if(!t)return;
+ saveKey();var b=document.getElementById('chatB').value;
+ S.chat.push({role:'user',text:(b?'['+b+'] ':'')+t});renderChat();document.getElementById('chatIn').value='';
+ try{
+  var hist=S.chat.slice(-8).map(function(m){return {role:m.role==='ai'?'assistant':'user',content:m.text}});
+  var r=await call(hist,1500,projectDigest());
+  S.chat.push({role:'ai',text:r});save();renderChat();
+ }catch(e){S.chat.push({role:'ai',text:'ERROR: '+e.message});renderChat()}
+}
 
-  <main id="studio-ui">
-    <!-- Step 1: Connect -->
-    <div class="card">
-      <h2>Connect <span class="step">Step 1</span></h2>
-      <p class="small">Set up your Kimi API connection</p>
-      <div id="balanceBanner"></div>
-      <div id="versionBanner"></div>
-      <label>Model</label>
-      <select id="model" onchange="save()">
-        <option value="kimi-k2.6">kimi-k2.6 (262k context, vision)</option>
-        <option value="kimi-k3">kimi-k3 (reasoning, slower)</option>
-      </select>
-      <div style="margin-top:16px">
-        <button class="btn" onclick="checkBalance()">🔄 Refresh Balance</button>
-        <button class="btn sec" onclick="testConnection()" style="margin-left:8px">Test Connection</button>
-      </div>
-    </div>
+/* ---- VALIDATION ---- */
+function renderVal(){
+ var cs=[];
+ var covered=BLD.filter(function(b){return photosOfB(b).length>0});
+ cs.push({ok:covered.length===9,msg:(covered.length===9?'✓':'✗')+' <b>All 9 buildings have photos</b> — '+covered.length+'/9 covered ('+covered.join(', ')+')'});
+ var un=photosOfB('Unassigned / Review').length;cs.push({ok:un===0,msg:(un===0?'✓':'⚠')+' <b>Unassigned photos</b>: '+un+(un?' — move them in tab 3':''),warn:un>0});
+ BLD.forEach(function(b){var ids=photosOfB(b);if(!ids.length)return;var e=S.exec[b]||{};
+  var full=(e.findings||'').length>10&&(e.risks||'').length>10;
+  cs.push({ok:full,warn:!full,msg:(full?'✓':'⚠')+' <b>'+b+'</b> executive summary '+(full?'complete':'incomplete — tab 4')});
+  var cov=e.rooms>0&&e.tot>0;cs.push({ok:cov,warn:!cov,msg:(cov?'✓':'⚠')+' <b>'+b+'</b> coverage numbers '+(cov?'filled':'missing')})});
+ var dn=DELIV.filter(function(t,i){return S.deliv[i]==='Complete'}).length;
+ cs.push({ok:dn>=15,warn:dn<15,msg:'⚠ <b>Deliverables</b>: '+dn+'/'+DELIV.length+' complete (fill as work progresses)'});
+ var op=OPTS.filter(function(t,i){return S.opts[i]&&S.opts[i].p!==''}).length;
+ cs.push({ok:op===OPTS.length,msg:(op===OPTS.length?'✓':'⚠')+' <b>Optional services priced</b>: '+op+'/'+OPTS.length+' (RFP §7)'});
+ var el=document.getElementById('valList');el.innerHTML='';
+ var blockers=cs.filter(function(c){return !c.ok&&!c.warn}).length,warns=cs.filter(function(c){return c.warn}).length;
+ cs.forEach(function(c){el.innerHTML+='<div class="val-item '+(c.ok?'val-ok':c.warn?'val-warn':'val-bad')+'"><span>'+c.msg+'</span></div>'});
+ el.innerHTML='<p style="font-weight:700">'+(blockers===0?(warns===0?'🟢 Fully validated — ship it':'🟡 Ship-ready with '+warns+' advisory warning(s)'):'🔴 '+blockers+' blocking item(s)')+'</p>'+el.innerHTML;
+ document.getElementById('verLine').textContent='Current version: v'+S.ver+' · '+S.log.length+' changelog entries';
+}
 
-    <!-- Step 2: Ingest -->
-    <div class="card" style="display:none">
-      <h2>Ingest <span class="step">Step 2</span></h2>
-      <p class="small" id="ingestStats">📸 0 · 0 analyzed · 0 failed</p>
-      <div id="heicBanner"></div>
-      <div class="file-input">
-        <input type="file" multiple accept="image/*,.zip,.pdf,.txt,.md,.json,.csv" onchange="e => handleFilesDrop(Array.from(e.target.files))">
-        <button class="btn">+ Drop Photos/Folders/ZIPs</button>
-      </div>
-      <div id="filesList" style="margin-top:16px"></div>
-      <div style="margin-top:16px">
-        <button class="btn" onclick="startPass1()">Analyze All</button>
-        <button class="btn sec" onclick="pausePass1()" style="margin-left:8px">Pause</button>
-        <button class="btn sec" onclick="resumePass1()" style="margin-left:8px">Resume</button>
-      </div>
-    </div>
+/* ---- REPORT ---- */
+function parseAIJSON(t){t=String(t||'').replace(/```json|```/g,'');var a=t.indexOf('{'),b=t.lastIndexOf('}');if(a<0||b<=a)throw new Error('model reply contained no JSON');var raw=t.slice(a,b+1);try{return JSON.parse(raw)}catch(e){throw new Error('model returned malformed JSON ('+e.message+')')}}
+function esc(x){return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function bumpVersion(){
+ S.ver++;var note=document.getElementById('clNote').value.trim();
+ S.log.push({v:'v'+S.ver,date:new Date().toLocaleString(),note:note||'Survey regenerated'});save();
+}
+function aggCats(an){var t={};CATS.forEach(function(k){t[k]=0});an.forEach(function(j){var c=j.cable_categories||{};CATS.forEach(function(k){t[k]+=c[k]||0})});return t}
+function findB(an){return an.map(function(j){return j.findings||[]}).reduce(function(a,f){return a.concat(f)},[])}
+function renderReport(fromUI){
+ if(!S.clusters.length){alert('Complete tabs 2–3 first');return}
+ if(fromUI)bumpVersion();
+ var covered=BLD.filter(function(b){return photosOfB(b).length>0});
+ var allAn=covered.map(function(b){return photosOfB(b).map(function(id){return S.an[id]}).filter(function(j){return j&&!j.error})}).reduce(function(a,x){return a.concat(x)},[]);
+ var cats=aggCats(allAn);var totC=0;CATS.forEach(function(k){totC+=cats[k]});
+ var flagged=covered.filter(function(b){var t=aggCats(photosOfB(b).map(function(id){return S.an[id]}).filter(function(j){return j&&!j.error}));return t['Category 5']+t['Category 5e']+t['Unknown']>0||findB(photosOfB(b).map(function(id){return S.an[id]}).filter(function(j){return j&&!j.error})).some(function(f){return f.severity==='Severe'})});
+ /* exec one-pager */
+ var h='<div class="card"><div style="text-align:center;padding:8px 0"><h1 style="color:#0f3a47;font-size:1.45rem;margin:0">Campus-Wide Structured Cabling Infrastructure Assessment</h1>'+
+ '<div style="color:#5b6b73;font-size:.85rem;margin-top:4px">Dumbarton Oaks Research Library and Collection · Trustees for Harvard University · Dept. of Information Technology</div>'+
+ '<div style="color:#5b6b73;font-size:.8rem">RFP DOIT-2026-001 · PM: Charlotte Leonard · Prepared by <b>Thinogic</b> · Version v'+S.ver+' · '+new Date().toLocaleDateString()+'</div></div>'+
+ '<div class="rpt-stats" style="justify-content:center"><div class="stat"><b>'+covered.length+'</b><span>Buildings surveyed</span></div><div class="stat"><b>'+allAn.length+'</b><span>Photo surveys</span></div><div class="stat"><b>'+totC+'</b><span>Cables counted</span></div><div class="stat"><b>'+(cats['Category 5']+cats['Category 5e'])+'</b><span>Legacy Cat5/5e</span></div><div class="stat"><b>'+cats['Fiber optic']+'</b><span>Fiber</span></div><div class="stat"><b>'+cats['Unknown']+'</b><span>Unknown</span></div><div class="stat"><b>'+flagged.length+'</b><span>Bldgs flagged</span></div></div>'+
+ '<div class="rpt-body"><h4>Executive Summary for Trustees</h4><p style="font-size:.9rem">Thinogic has completed a photo-documented assessment of the structured cabling plant across '+covered.length+' Dumbarton Oaks campus buildings. The campus carries a measurable legacy burden — '+cats['Category 5']+' Category 5, '+cats['Category 5e']+' Category 5e, and '+cats['Unknown']+' unidentified cable runs — on a network that simultaneously serves museum collections security, research scholarship, residential guests, and building operations. '+flagged.length+' of '+covered.length+' buildings are flagged for prioritized action. Full per-building chapters follow; a phased capital roadmap and Thinogic\'s Phase 2 execution proposal complete this report.</p></div></div>';
+ /* chapters */
+ covered.forEach(function(b,ci){
+  var ids=photosOfB(b);var an=ids.map(function(id){return S.an[id]}).filter(function(j){return j&&!j.error});
+  var t=aggCats(an);var finds=findB(an);var e=S.exec[b]||{};
+  var sev=finds.some(function(f){return f.severity==='Severe'})?'SEVERE':finds.some(function(f){return f.severity==='Moderate'})?'Moderate':'Minor';
+  h+='<div class="rpt-bld"><div class="rpt-head" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px"><b>📖 Chapter '+(ci+1)+' — '+b+'</b><span class="badge b-'+sev.slice(0,3)+'">'+sev+' PRIORITY</span><span style="font-size:.78rem;opacity:.85">'+ids.length+' photo surveys · condition: '+(e.cond||'—')+'</span></div>'+
+  '<div class="rpt-stats">'+CATS.map(function(k){return '<div class="stat"><b>'+t[k]+'</b><span>'+k.replace('Category ','Cat').replace(' optic','')+'</span></div>'}).join('')+'</div><div class="rpt-body">';
+  if((e.findings||'').length)h+='<h4>Key Findings</h4><p style="font-size:.85rem;white-space:pre-wrap">'+esc(e.findings)+'</p>';
+  if((e.risks||'').length)h+='<h4>Major Risks</h4><p style="font-size:.85rem;white-space:pre-wrap">'+esc(e.risks)+'</p>';
+  if((e.obs||'').length)h+='<h4>Professional Observations (Thinogic field team)</h4><p style="font-size:.85rem;white-space:pre-wrap">'+esc(e.obs)+'</p>';
+  if((e.budget||'').length)h+='<h4>Budget Considerations (ROM)</h4><p style="font-size:.85rem;white-space:pre-wrap">'+esc(e.budget)+'</p>';
+  h+='<h4>Condition Assessment</h4><table><thead><tr><th>Element</th><th>Rating</th></tr></thead><tbody>';
+  ['rack','cabling','labeling','pathways','environment','grounding'].forEach(function(el){
+   var votes={Good:0,Fair:0,Poor:0,Critical:0};an.forEach(function(j){var c=j.condition||{};if(c[el]&&votes[c[el]]!==undefined)votes[c[el]]++});
+   var best=Object.keys(votes).sort(function(a,b){return votes[b]-votes[a]})[0];h+='<tr><td style="text-transform:capitalize">'+el+'</td><td>'+(votes[best]?(best+' ('+votes[best]+' photo'+(votes[best]>1?'s':'')+')'):'—')+'</td></tr>'});
+  h+='</tbody></table>';
+  if(finds.length){h+='<h4>Findings & Risk Matrix (likelihood × impact)</h4>';
+   var order={Severe:0,Moderate:1,Minor:2};finds.sort(function(a,b){return order[a.severity]-order[b.severity]});
+   finds.forEach(function(f){h+='<div class="finding '+f.severity+'"><b>['+f.severity+']</b> '+esc(f.type)+' — '+esc(f.description)+' <span class="badge b-MOD">L:'+f.likelihood+' × I:'+f.impact+'</span></div>'})}
+  var stds=an.map(function(j){return j.standards_issues||[]}).reduce(function(a,x){return a.concat(x)},[]);
+  if(stds.length){h+='<h4>Standards Compliance Gaps (TIA/BICSI)</h4><table><thead><tr><th>Standard</th><th>Issue observed</th><th>Compliance requirement</th></tr></thead><tbody>'+
+   stds.map(function(x){return '<tr><td>'+esc(x.standard)+'</td><td>'+esc(x.issue)+'</td><td>'+esc(x.gap)+'</td></tr>'}).join('')+'</tbody></table>'}
+  var bom={};an.forEach(function(j){(j.bom_suggestions||[]).forEach(function(x){var k=x.item;if(!bom[k])bom[k]={item:x.item,qty:0,unit:x.unit||'ea',rom:x.rom_each||''};bom[k].qty+=x.qty||1})});
+  var bk=Object.keys(bom);
+  if(bk.length){h+='<h4>Indicative Bill of Materials (planning)</h4><table><thead><tr><th>Item</th><th>Qty</th><th>Unit</th><th>ROM unit $</th></tr></thead><tbody>'+
+   bk.map(function(k){var x=bom[k];return '<tr><td>'+esc(x.item)+'</td><td>'+x.qty+'</td><td>'+x.unit+'</td><td>'+(x.rom||'—')+'</td></tr>'}).join('')+'</tbody></table>'}
+  h+='<h4>Recommended Upgrades (actionable — priced in Phase 2 proposal)</h4>';
+  var recs=[];an.forEach(function(j){if(j.recommended&&recs.indexOf(j.recommended)<0)recs.push(j.recommended)});
+  var legacy=t['Category 5']+t['Category 5e'];
+  if(legacy>0)recs.unshift('Replace '+legacy+' legacy Cat5/5e runs with Category 6A (10GBASE-T / PoE++ capable), phased to avoid disrupting museum and research operations');
+  if(t['Unknown']>0)recs.push('Identify '+t['Unknown']+' unknown-type cable runs (documented per RFP §5-D) via jacket verification and certification testing');
+  if((e.cond==='Poor'||e.cond==='Critical'))recs.push('Telecommunications room remediation at '+b+': grounding verification (TIA-607), cable management, environmental monitoring');
+  h+=recs.map(function(r){return '<div class="action">→ '+esc(r)+'</div>'}).join('');
+  h+='<h4>Photo Evidence</h4>';
+  ids.forEach(function(pid){var p=S.photos.filter(function(x){return x.id===pid})[0];var j=S.an[pid];if(!p||!j)return;
+   var th=S.chat&&false?'':'';
+   var imgHtml=j.faces?'<div style="width:150px;height:100px;border:1px dashed #b23a2f;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.65rem;color:#b23a2f;text-align:center;padding:6px">WITHHELD<br>privacy screen<br>(faces visible)</div>':'<div style="width:150px;height:100px;border:1px solid #d7dee1;border-radius:8px;background:#eef4f6;display:flex;align-items:center;justify-content:center;font-size:.62rem;color:#7a8a92;text-align:center;padding:6px">Photo on file<br>'+esc(p.name)+'</div>';
+   h+='<div class="evrow">'+imgHtml+'<div style="flex:1"><b>'+esc(p.name)+'</b> · '+new Date(p.ts).toLocaleString()+' · '+(j.room||'location n/a')+(j.error?' · <span style="color:#b23a2f">analysis failed</span>':'')+'<br><span style="font-size:.8rem">'+esc(j.summary||'')+'</span>'+((j.labels_read&&j.labels_read.length)?'<br><span style="font-size:.75rem;color:#5b6b73">Labels: '+esc(j.labels_read.map(function(l){return l.text}).join(', '))+'</span>':'')+'</div></div>'});
+  if(e.rooms||e.tot||e.na)h+='<h4>Coverage Statement</h4><p style="font-size:.82rem">Rooms photographed: '+(e.rooms||'—')+' of estimated '+(e.tot||'—')+' total. Areas not accessed: '+esc(e.na||'none recorded')+'.</p>';
+  h+='</div></div>';
+ });
+ /* campus close: roadmap, why thinogic, assumptions, deliverables, opts, changelog */
+ var dn=DELIV.filter(function(t,i){return S.deliv[i]==='Complete'}).length;
+ h+='<div class="card"><h2>Capital Improvement Roadmap (all buildings)</h2>'+
+ '<div class="finding SEVERE" style="border-left-color:#b23a2f"><b>IMMEDIATE (0–12 mo):</b> life-safety & compliance — abandoned cable removal (plenum fire-load), TIA-607 grounding verification, damaged-run replacement, backbone fiber certification, campus inventory baseline.</div>'+
+ '<div class="finding Moderate"><b>YEARS 1–3:</b> legacy Cat5/5e → Cat6A horizontal modernization in flagged buildings (10GBASE-T, PoE++ for security/BMS/Wi-Fi 6E), telecom room remediation, full TIA-606 labeling program, network segmentation for security zones.</div>'+
+ '<div class="finding Minor"><b>YEARS 3–5:</b> campus fiber backbone modernization with documented spares, remaining buildings, CAD + GIS/BIM integration, recurring BICSI-aligned re-certification.</div>'+
+ '<p style="font-size:.82rem;color:#5b6b73;margin-top:8px">Phasing respects museum operations, research continuity, and historic-preservation constraints — work scheduled off-hours, reversible pathways in significant structures.</p></div>';
+ h+='<div class="card"><h2>Why Thinogic for Phase 2</h2><p style="font-size:.87rem">• Every recommendation in this report traces to photo evidence and standards clauses — verifiable, not generic.<br>• AI-assisted documentation delivered in the RFP\'s own 10-column database format from day one.<br>• Historic-campus methodology: reversible pathways, phased scheduling around scholarship and museum operations.<br>• Security-first: the physical layer treated as the foundation of the institution\'s cybersecurity posture.<br>• In-house certification capability — this survey\'s recommendations can be executed, certified, and warranted by one accountable team.</p></div>';
+ h+='<div class="card"><h2>Assumptions & Exclusions</h2><p style="font-size:.82rem;color:#5b6b73">Quantities are field-visible counts plus reasoned estimates; legible-label inventory rows are photo-verified, estimated quantities are marked as such. Costs are ROM planning figures, not bids. Pre-1980 structures: pathway work assumes asbestos-survey clearance before disturbance. Abandoned-cable remediation subject to plenum/code disposal requirements. This report covers assessment and recommendations; installation, certification, and CAD/GIS production are priced separately per RFP §7.</p>'+
+ '<h2 style="margin-top:14px">Deliverables Status (RFP §6)</h2><p style="font-size:.85rem">'+dn+' of '+DELIV.length+' deliverables complete in project file.</p>'+
+ '<h2 style="margin-top:14px">Optional Services — Separate Pricing (RFP §7)</h2><table><thead><tr><th>Service</th><th>Price</th><th>Basis</th></tr></thead><tbody>'+
+ OPTS.map(function(t,i){return '<tr><td>'+t+'</td><td>'+(S.opts[i]&&S.opts[i].p?'$'+esc(S.opts[i].p):'—')+'</td><td>'+esc((S.opts[i]&&S.opts[i].n)||'')+'</td></tr>'}).join('')+'</tbody></table>'+
+ '<h2 style="margin-top:14px">Version History</h2><table><thead><tr><th>Version</th><th>Date</th><th>Change</th></tr></thead><tbody>'+
+ S.log.slice(-10).map(function(l){return '<tr><td>'+l.v+'</td><td>'+l.date+'</td><td>'+esc(l.note)+'</td></tr>'}).join('')+'</tbody></table></div>';
+ document.getElementById('report').innerHTML=h;
+ if(fromUI){renderVal();document.getElementById('report').scrollIntoView({behavior:'smooth'})}
+ return h;
+}
+function dl(c,n,t){var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
+function buildDoc(){
+ var h=renderReport(false);if(!h)return null;
+ var css="body{font-family:-apple-system,'Segoe UI',Arial,sans-serif;background:#f4f6f7;color:#12212b;margin:0;line-height:1.5}"+
+ "header{background:linear-gradient(135deg,#0f3a47,#1d5c6e);color:#fff;padding:30px 20px;text-align:center}header h1{margin:0;font-size:1.5rem}header div{opacity:.85;font-size:.85rem;margin-top:5px}"+
+ ".wrap{max-width:1000px;margin:0 auto;padding:20px}.card{background:#fff;border:1px solid #d7dee1;border-radius:12px;padding:20px;margin:16px 0}"+
+ "h2{color:#1d5c6e;border-bottom:2px solid #1d5c6e;padding-bottom:6px;font-size:1.15rem}"+
+ ".rpt-bld{border:1px solid #d7dee1;border-radius:12px;margin:18px 0;overflow:hidden;page-break-inside:avoid}.rpt-head{background:linear-gradient(135deg,#0f3a47,#1d5c6e);color:#fff;padding:14px 18px}"+
+ ".rpt-stats{display:flex;gap:10px;flex-wrap:wrap;padding:14px 18px;background:#f0f6f8}.stat{background:#fff;border:1px solid #d7dee1;border-radius:10px;padding:10px 14px;text-align:center;min-width:80px}.stat b{display:block;font-size:1.25rem;color:#0f3a47}.stat span{font-size:.58rem;text-transform:uppercase;color:#5b6b73}"+
+ ".rpt-body{padding:14px 18px}.rpt-body h4{color:#0f3a47;margin:12px 0 6px;font-size:.9rem}.finding{padding:8px 12px;border-left:4px solid #d7dee1;margin:7px 0;background:#fafcfd;border-radius:0 8px 8px 0;font-size:.85rem}.finding.SEVERE{border-color:#b23a2f}.finding.Moderate{border-color:#c9a227}.finding.Minor{border-color:#2e7d4f}"+
+ ".action{background:#eef4f6;border-radius:8px;padding:9px 14px;margin:6px 0;font-size:.85rem}.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-size:.72rem;font-weight:700}.b-SEV{background:#fbe4e1;color:#b23a2f}.b-MOD{background:#fdf3dc;color:#8a6d1a}.b-MIN{background:#e2f2e8;color:#2e7d4f}"+
+ "table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px}th{background:#1d5c6e;color:#fff;padding:7px;text-align:left;font-size:.7rem;text-transform:uppercase}td{padding:6px;border-bottom:1px solid #d7dee1}tr:nth-child(even) td{background:#f8fafb}"+
+ ".evrow{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed #d7dee1;font-size:.8rem}footer{text-align:center;padding:26px;font-size:.75rem;color:#7a8a92}@media print{body{background:#fff}.card,.rpt-bld{box-shadow:none}}";
+ return "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Dumbarton Oaks Cabling Assessment v"+S.ver+" \u2014 Thinogic</title><style>"+css+"</style></head><body>"+
+ "<header><h1>\ud83c\udfeb Campus-Wide Structured Cabling Infrastructure Assessment</h1><div>Dumbarton Oaks Research Library and Collection \u00b7 Trustees for Harvard University \u00b7 Department of Information Technology</div><div>RFP DOIT-2026-001 \u00b7 PM: Charlotte Leonard \u00b7 Prepared by <b>Thinogic</b> \u00b7 Version v"+S.ver+" \u00b7 "+new Date().toLocaleDateString()+"</div></header>"+
+ "<div class='wrap'>"+h+
+ "<div class='card'><h2>Scope of Work Coverage Statement</h2><p style='font-size:.85rem'>Prepared in full response to RFP DOIT-2026-001: \u00a71 Introduction \u00b7 \u00a72 Background \u00b7 \u00a73 Project Objectives \u00b7 \u00a74 Buildings Included (all nine named facilities) \u00b7 \u00a75 Scope of Work A\u2013F (telecommunications room assessment, horizontal cabling, backbone infrastructure, cable identification, infrastructure review, standards review vs ANSI/TIA-568/-569/-606/-607 and BICSI) \u00b7 \u00a76 Deliverables (executive summary per building, comprehensive assessment, cable inventory database in 10-column Excel format, telecom room diagrams, campus dashboard, capital improvement recommendations) \u00b7 \u00a77 Optional Services with separate pricing. Unknown cable types documented per \u00a75-D. Survey produced by the Thinogic Survey Studio with AI-assisted photo analysis and professional field review.</p></div>"+
+ "<footer>Thinogic \u00b7 Structured Cabling & Network Infrastructure \u00b7 Confidential \u2014 prepared for Dumbarton Oaks DOIT</footer></div></body></html>";
+}
+function expBeautiful(){var d=buildDoc();if(d)dl(d,'Dumbarton_Oaks_Survey_v'+S.ver+'.html','text/html')}
+function pubLink(id,url){var el=document.getElementById(id);el.innerHTML='\u2705 Live: <a href="'+url+'" target="_blank" style="font-weight:700;color:#2e7d4f">'+url+'</a> <button class="btn sec" style="padding:2px 10px;font-size:.72rem" onclick="navigator.clipboard.writeText(\''+url+'\');this.textContent=\'Copied!\'">Copy</button>'}
+async function publishClient(){
+ var d=buildDoc();if(!d){alert('Generate the survey first (Preview)');return}
+ document.getElementById('pubMsg').textContent='Publishing\u2026';
+ try{var r=await fetch('/api/publish',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({name:'survey.html',content:d})}).then(function(x){return x.json()});
+  if(r.error)throw new Error(r.error);
+  pubLink('pubMsg',location.origin+r.url);
+ }catch(e){document.getElementById('pubMsg').textContent='\u2717 '+e.message;document.getElementById('pubMsg').style.color='#b23a2f'}
+}
+function makePDF(){
+ var d=buildDoc();if(!d)return;
+ var w=window.open('','_blank');
+ w.document.write(d.replace('</body>','<script>window.onload=function(){setTimeout(function(){window.print()},600)}<\/script></body>'));
+ w.document.close();
+}
+async function uploadPDF(inp){
+ var f=inp.files[0];if(!f)return;
+ document.getElementById('pdfMsg').textContent='Uploading\u2026';
+ var b64=await new Promise(function(res){var r=new FileReader();r.onload=function(e){res(e.target.result.split(',')[1])};r.readAsDataURL(f)});
+ try{var r=await fetch('/api/publish',{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify({name:'survey.pdf',content:b64,b64:true})}).then(function(x){return x.json()});
+  if(r.error)throw new Error(r.error);
+  pubLink('pdfMsg',location.origin+r.url);
+ }catch(e){document.getElementById('pdfMsg').textContent='\u2717 '+e.message;document.getElementById('pdfMsg').style.color='#b23a2f'}
+}
+function expInv(){var rows=[['Building','Room/Location','Photo','Cable ID/Label','Category','Status','Notes']];
+ BLD.forEach(function(b){photosOfB(b).forEach(function(pid){var j=S.an[pid];if(!j)return;
+  (j.labels_read||[]).forEach(function(l){rows.push([b,j.room||'',pidOfName(pid),l.text,'','',l.where])})})});
+ function pidOfName(pid){var p=S.photos.filter(function(x){return x.id===pid})[0];return p?p.name:pid}
+ dl(rows.map(function(r){return r.map(function(x){return '"'+String(x||'').replace(/"/g,'""')+'"'}).join(',')}).join('\n'),'cable_inventory_database.csv','text/csv')}
+function expJSON(){dl(JSON.stringify({project:"Dumbarton Oaks RFP DOIT-2026-001",version:S.ver,saved:new Date().toISOString(),state:S},null,2),'thinogic_survey_project_v'+S.ver+'.json','application/json')}
+function importProject(inp){var f=inp.files[0];if(!f)return;var r=new FileReader();
+ r.onload=function(e){try{var j=JSON.parse(e.target.result);S=j.state||j;save();alert('Project v'+S.ver+' loaded: '+S.photos.length+' photos, '+S.clusters.length+' clusters. (Original image files are not in project files — re-drop photos only if you want to re-analyze; all analysis data is intact.)');location.reload()}catch(err){alert('Load failed: '+err.message)}};r.readAsText(f)}
 
-    <!-- Step 3: Cluster -->
-    <div class="card" style="display:none">
-      <h2>Cluster <span class="step">Step 3</span></h2>
-      <p class="small">Group photos by building and room</p>
-      <p>Clustering UI — Pass 2/3 logic TBD (group by timestamps, labels, visual continuity)</p>
-    </div>
+/* ---- GITHUB PUBLISH ---- */
+async function publish(){
+ saveKey();
+ var t=document.getElementById('ghT').value,o=document.getElementById('ghO').value,repo=document.getElementById('ghR').value,path=document.getElementById('ghP').value;
+ if(!t||!o||!repo){alert('Fill token, owner, repo');return}
+ var h=renderReport(false);
+ var css="body{font-family:-apple-system,Arial,sans-serif;background:#f4f6f7;color:#12212b;margin:0;line-height:1.5}header{background:linear-gradient(135deg,#0f3a47,#1d5c6e);color:#fff;padding:30px 20px;text-align:center}header h1{margin:0;font-size:1.5rem}header div{opacity:.85;font-size:.85rem;margin-top:5px}.wrap{max-width:1000px;margin:0 auto;padding:20px}.card{background:#fff;border:1px solid #d7dee1;border-radius:12px;padding:20px;margin:16px 0}h2{color:#1d5c6e;border-bottom:2px solid #1d5c6e;padding-bottom:6px}.rpt-bld{border:1px solid #d7dee1;border-radius:12px;margin:18px 0;overflow:hidden}.rpt-head{background:linear-gradient(135deg,#0f3a47,#1d5c6e);color:#fff;padding:14px 18px}.rpt-stats{display:flex;gap:10px;flex-wrap:wrap;padding:14px 18px;background:#f0f6f8}.stat{background:#fff;border:1px solid #d7dee1;border-radius:10px;padding:10px 14px;text-align:center;min-width:80px}.stat b{display:block;font-size:1.25rem;color:#0f3a47}.stat span{font-size:.58rem;text-transform:uppercase;color:#5b6b73}.rpt-body{padding:14px 18px}.rpt-body h4{color:#0f3a47;margin:12px 0 6px}.finding{padding:8px 12px;border-left:4px solid #d7dee1;margin:7px 0;background:#fafcfd;font-size:.85rem}.finding.SEVERE{border-color:#b23a2f}.finding.Moderate{border-color:#c9a227}.finding.Minor{border-color:#2e7d4f}.action{background:#eef4f6;border-radius:8px;padding:9px 14px;margin:6px 0;font-size:.85rem}.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-size:.72rem;font-weight:700}.b-SEV{background:#fbe4e1;color:#b23a2f}.b-MOD{background:#fdf3dc;color:#8a6d1a}.b-MIN{background:#e2f2e8;color:#2e7d4f}table{width:100%;border-collapse:collapse;font-size:.82rem;margin-top:8px}th{background:#1d5c6e;color:#fff;padding:7px;text-align:left;font-size:.7rem;text-transform:uppercase}td{padding:6px;border-bottom:1px solid #d7dee1}tr:nth-child(even) td{background:#f8fafb}.evrow{display:flex;gap:10px;padding:8px 0;border-bottom:1px dashed #d7dee1;font-size:.8rem}footer{text-align:center;padding:26px;font-size:.75rem;color:#7a8a92}";
+ var doc="<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><title>Dumbarton Oaks Cabling Assessment v"+S.ver+" — Thinogic</title><style>"+css+"</style></head><body><header><h1>🏛️ Campus-Wide Structured Cabling Infrastructure Assessment</h1><div>Dumbarton Oaks Research Library and Collection · RFP DOIT-2026-001 · Prepared by Thinogic · v"+S.ver+"</div></header><div class='wrap'>"+h+"</div></body></html>";
+ var msg=document.getElementById('ghMsg');msg.textContent='Publishing…';
+ try{
+  var sha=null;
+  var g=await fetch('https://api.github.com/repos/'+o+'/'+repo+'/contents/'+path,{headers:{'Authorization':'token '+t}}).then(function(r){return r.ok?r.json():null});
+  if(g&&g.sha)sha=g.sha;
+  var body={message:'Thinogic survey v'+S.ver,content:btoa(unescape(encodeURIComponent(doc)))};if(sha)body.sha=sha;
+  var pu=await fetch('https://api.github.com/repos/'+o+'/'+repo+'/contents/'+path,{method:'PUT',headers:{'Authorization':'token '+t,'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!pu.ok)throw new Error('GitHub '+pu.status+': '+JSON.stringify(await pu.json()).slice(0,200));
+  var url='https://'+o+'.github.io/'+repo+'/'+path;
+  document.getElementById('ghUrl').textContent=url;
+  msg.style.color='#2e7d4f';msg.textContent='✓ LIVE: '+url;
+ }catch(e){msg.style.color='#b23a2f';msg.textContent='✗ '+e.message}
+}
 
-    <!-- Step 4: Buildings & Deliverables -->
-    <div class="card" style="display:none">
-      <h2>Buildings & Jerry <span class="step">Step 4</span></h2>
-      <p class="small">Per-building assessment, coverage, & deliverables checklist</p>
-      <p>Building intake form, 24-item checklist, 7-item §7 pricing, cert table TBD</p>
-    </div>
-
-    <!-- Step 5: Ask Kimi -->
-    <div class="card" style="display:none">
-      <h2>Ask Kimi <span class="step">Step 5</span></h2>
-      <p class="small">Project-aware chat, add answers to survey</p>
-      <p>Chat interface TBD</p>
-    </div>
-
-    <!-- Step 6: Validate & Publish -->
-    <div class="card" style="display:none">
-      <h2>Validate & Ship <span class="step">Step 6</span></h2>
-      <p class="small">Export HTML, PDF, CSV, JSON, or publish to public link</p>
-      <div style="margin-top:16px">
-        <button class="btn" onclick="expBeautiful()">📄 Download HTML</button>
-        <button class="btn sec" onclick="makePDF()" style="margin-left:8px">🖨️ Print/PDF</button>
-        <button class="btn sec" onclick="expInv()" style="margin-left:8px">📊 Export CSV</button>
-        <button class="btn sec" onclick="expJSON()" style="margin-left:8px">💾 Save Project</button>
-      </div>
-      <div style="margin-top:16px">
-        <label>Or publish live:</label>
-        <button class="btn" onclick="publishClient()" style="width:100%">🚀 Publish HTML</button>
-        <div id="pubMsg" style="margin-top:8px;font-size:.8rem"></div>
-      </div>
-    </div>
-  </main>
-</div>
-
-<!-- Completion Modal -->
-<div id="completionModal" class="modal">
-  <div class="modal-content">
-    <h3>✓ Pass 1 Complete</h3>
-    <div id="completionMsg" style="margin:16px 0"></div>
-    <button class="btn" onclick="document.getElementById('completionModal').classList.remove('show')" style="width:100%;margin-top:16px">Continue</button>
-  </div>
-</div>
-
-</body></html>
+/* boot */
+renderFiles();
+setInterval(function(){if(document.getElementById('loginOverlay').style.display==='none')checkBal(true)},600000);
+if(S.clusters.length){document.getElementById('go2').disabled=false;renderClusters();
+ if(S.locked){lockClusters();document.getElementById('lockmsg').textContent='✓ Previously locked mapping restored.'}}
+</script></body></html>
