@@ -149,8 +149,10 @@ def route_get(self):
         return self._json(200, {"current": cur_id(), "list": lst})
     if self.path.startswith("/proxy/"):
         if not session_of(self.headers): return self._json(401, {"error": "login required"})
+        if not KEY: return self._json(503, {"error": "KIMI_API_KEY not configured"})
         url = "https://" + self.path[len("/proxy/"):]
-        req = urllib.request.Request(url, headers={"Authorization": "Bearer " + KEY})
+        headers = {"Authorization": "Bearer " + KEY, "Content-Type": "application/json"}
+        req = urllib.request.Request(url, headers=headers)
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
                 self.send_response(200); self.send_header("Content-Type", "application/json")
@@ -241,6 +243,7 @@ def route_post(self, body):
         except Exception as e: return self._json(400, {"error": str(e)})
     
     if self.path.startswith("/proxy/"):
+        if not KEY: return self._json(503, {"error": "KIMI_API_KEY not configured"})
         url = "https://" + self.path[len("/proxy/"):]
         req = urllib.request.Request(url, data=body, headers={
             "Content-Type": "application/json", "Authorization": "Bearer " + KEY})
