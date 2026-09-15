@@ -151,7 +151,7 @@ def route_get(self):
         if not session_of(self.headers): return self._json(401, {"error": "login required"})
         if not KEY: return self._json(503, {"error": "KIMI_API_KEY not configured"})
         url = "https://" + self.path[len("/proxy/"):]
-        headers = {"Authorization": "Bearer " + KEY, "Content-Type": "application/json"}
+        headers = {"Authorization": KEY, "Content-Type": "application/json"}
         req = urllib.request.Request(url, headers=headers)
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
@@ -246,7 +246,7 @@ def route_post(self, body):
         if not KEY: return self._json(503, {"error": "KIMI_API_KEY not configured"})
         url = "https://" + self.path[len("/proxy/"):]
         req = urllib.request.Request(url, data=body, headers={
-            "Content-Type": "application/json", "Authorization": "Bearer " + KEY})
+            "Content-Type": "application/json", "Authorization": KEY})
         try:
             with urllib.request.urlopen(req, timeout=150) as r:
                 self.send_response(200); self.send_header("Content-Type", "application/json")
